@@ -8,3 +8,18 @@ Usuario::Usuario(std::string nickname, std::string nombre, std::string contrasen
 }
 
 Usuario::~Usuario() {}
+
+DTUsuario Usuario::getDTUsuario() const
+{
+    return DTUsuario(nickname, nombre);
+}
+
+float Usuario::getCalificacionPromedio() const
+{
+    float calificacionTotal = 0;
+    for (const Calificacion& calificacion : calificaciones) 
+    {
+        calificacionTotal += calificacion.getPuntaje();
+    }
+    return calificacionTotal / calificaciones.size();
+}

@@ -13,8 +13,6 @@ bool Calificacion::coicidenUsuario(u: Usuario, u_Calif: usuario) {
 }
 
 void Calificacion::linkerCalifUsuario(u: Usuario, u_Calif: usuario) {
-    // Implementación para vincular la calificación con el usuario
-    if (coicidenUsuario(u, u_Calif)) {
-        usuariosCalificados.insert(u);
-    }
+   this->u_calificado=u_calif;
+   this->u_califica=u;
 }

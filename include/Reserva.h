@@ -10,7 +10,8 @@ class Reserva {
 private:
     int asientosReservados;
     DTFecha fecha;
-    Pasajero* pasajeros;
+    Pasajero* pasajero;
+    std::vector<Calificacion*> calificaciones;
 public:
     Reserva(int asientosReservados, DTFecha fecha);
     ~Reserva();
@@ -26,7 +27,6 @@ public:
     Pasajero* getPasajero();
     bool relacionResPas(Pasajero* p);
     std::string obtenerNickPasajero();
-    const std::map<std::string, Pasajero*>& getPasajeros();
 };
 
 #endif

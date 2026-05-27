@@ -2,6 +2,10 @@
 #define CALIFICACION_H
 
 #include "DTFecha.h"
+#include <set>
+#include "Usuario.h"
+#include "Reserva.h"
+
 
 class Calificacion {
 private:

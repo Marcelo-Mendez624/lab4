@@ -8,3 +8,29 @@ Usuario::Usuario(std::string nickname, std::string nombre, std::string contrasen
 }
 
 Usuario::~Usuario() {}
+
+
+void Usuario::asociarCalificacion(Calificacion calificacion) 
+{
+    calificaciones.push_back(calificacion);
+}
+
+DTUsuario Usuario::getDTUsuario() const
+{
+    return DTUsuario(nickname, nombre);
+}
+
+float Usuario::getCalificacionPromedio() const
+{
+    float calificacionTotal = 0;
+    for (const Calificacion& calificacion : calificaciones) 
+    {
+        calificacionTotal += calificacion.getPuntaje();
+    }
+    return calificacionTotal / calificaciones.size();
+}
+
+std::vector<DTListarViaje> Usuario::getViajes() const
+{
+    return viajes;
+}

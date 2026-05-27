@@ -3,6 +3,7 @@
 
 #include "TipoVehiculo.h"
 #include <string>
+#include <vector>
 
 class Vehiculo {
 private:

@@ -3,8 +3,10 @@
 
 #include <string>
 #include <vector>
+#include "Calificacion.h"
 #include "DTUsuario.h"
 #include "DTListarViaje.h"
+
 
 class Calificacion;
 
@@ -14,6 +16,7 @@ protected:
     std::string nombre;
     std::string contrasena;
     std::string email;
+    std::vector<Calificacion> calificaciones;
 
 public:
     Usuario(std::string nickname, std::string nombre, std::string contrasena, std::string email);
@@ -23,10 +26,10 @@ public:
     // TODO Revisar include
     void asociarCalificacion(Calificacion calificacion);
 
-    int getCalificacionPromedio() const;
+    float getCalificacionPromedio() const;
 
     DTUsuario getDTUsuario() const;
-    
+
     std::vector<DTListarViaje> getViajes() const; 
     
 };

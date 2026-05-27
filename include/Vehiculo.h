@@ -22,20 +22,19 @@ public:
     ~Vehiculo();
     
     //getters
-    std::string getMatricula();
-    int getCapacidad();
-    std::string getMarca();
-    TipoVehiculo getTipo();
+    std::string getMatricula() const;
+    int getCapacidad() const;
+    std::string getMarca() const;
+    TipoVehiculo getTipo() const;
 
     std::vector<DTListarViajes> listarViajes(); 
-    std::string getConductor();
-    float getCalifConductor();
-    DTUsuarioViaje getNickConductor();
-    DTVehiculosConductor getDTVehiculoConductor();
+    std::string getConductor() const;
+    float getCalifConductor() const;
+    DTUsuarioViaje getNickConductor() const;
+    DTVehiculosConductor getDTVehiculoConductor() const;
     bool hayViajesConductor(fecha:DTFecha);
     bool hayViajesFecha(fecha:DTFecha);
     void asociarViaje(cvi:Viaje);
 };
 
 #endif
-

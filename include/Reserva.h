@@ -10,7 +10,7 @@ class Reserva {
 private:
     int asientosReservados;
     DTFecha fecha;
-    std::map<std::string,Pasajero*> pasajeros;
+    Pasajero* pasajeros;
 public:
     Reserva(int asientosReservados, DTFecha fecha);
     ~Reserva();

@@ -7,6 +7,7 @@
 #include "DTUsuarioViaje.h"
 #include "Pasajero.h"
 #include "Reserva.h"
+#include "Vehiculo.h"
 #include <string>
 #include <vector>
 
@@ -19,17 +20,19 @@ private:
     int asientosPublicados;
     float precio;
     std::vector<Reserva> reservas;
-    
+    Vehiculo * veh;
+
 public:
     Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio);
     ~Viaje();
 
     //Getters
-    int getAsientosPublicados();
-    int getCodigo();
-    DTFecha getFecha();
-    std::string getOrigen();
-    std::string getDestino();
+    float getPrecio() const;
+    int getAsientosPublicados() const;
+    int getCodigo() const;
+    DTFecha getFecha() const;
+    std::string getOrigen() const;
+    std::string getDestino() const;
 
     //consultarViajes
     bool cumpleDatos(DTFecha fecha, std::string origen, std::string destino);

@@ -24,7 +24,9 @@ bool Conductor::tieneLibreta(TipoLibreta tipo) const
 std::vector<DTVehiculosConductor> Conductor::listarVehiculos() const
 {
     std::vector<DTVehiculosConductor> dtVehiculos;
-    for (const auto& vehiculo : vehiculos) {
+    
+    for (const auto& vehiculo : vehiculos) 
+    {
         DTVehiculosConductor dtVehiculo(vehiculo.getMatricula(), vehiculo.getMarca(), vehiculo.getCapacidad());
         dtVehiculos.push_back(dtVehiculo);
     }

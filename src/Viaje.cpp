@@ -54,3 +54,41 @@ DTConsultaViaje Viaje::crearDTConsultaViaje()
     DTConsultaViaje res = DTConsultaViaje(codigo, marca, modelo, conductor, calif, precio);
     return res;
 }
+
+bool relacion(Pasajero p) 
+{
+    return false;
+}
+
+int totalAsientosRes() 
+{
+    int asientosRe = getAsientosReservados();
+    int asientosPu = getAsientosPublicados();
+
+    return asientosPu - asientosRe;
+}
+
+void crearReserva(int asientos, DTFecha fecha) 
+{
+    Reserva *nuevaRes = new Reserva(asientos, fecha);
+}
+
+std::vector<DTListarViaje> crearDTViajes(Pasajero p)
+{
+
+}
+
+
+std::vector<DTUsuarioViaje> obtenerPasajeros() 
+{
+    std::vector<DTUsuarioViaje> dtPasajeros;
+
+    for (const auto& pasajero : pasajeros) 
+    {
+        if pasajero.getTipo() = pasajero {
+            DTUsuarioViaje dtPasajeros(pasajero.getNickname());
+        }
+        dtPasajeros.push_back(dtPasajeros);
+    }
+    return dtPasajeros;
+}

@@ -1,7 +1,7 @@
 #include "../include/DTVehiculosConductor.h"
 
 DTVehiculosConductor::DTVehiculosConductor(std::vector<DTDetalleVehiculo> vehiculos)
-    {
+{
     this->vehiculos = vehiculos;
 }
 

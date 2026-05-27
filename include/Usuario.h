@@ -22,8 +22,11 @@ public:
     
     // TODO Revisar include
     void asociarCalificacion(Calificacion calificacion);
+
     int getCalificacionPromedio() const;
+
     DTUsuario getDTUsuario() const;
+    
     std::vector<DTListarViaje> getViajes() const; 
     
 };

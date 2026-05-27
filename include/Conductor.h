@@ -19,10 +19,15 @@ public:
     ~Conductor();
 
     void agregarVehiculoConductor(vehiculo nuevoVehiculo);
+
     std::string getNombreConductor() const { return nombre; }
+
     float getCalificacionPromedio() const;
+
     bool tieneLibreta(TipoLibreta tipo) const;
+
     std::vector<DTVehiculosConductor> listarVehiculos() const;
+    
     bool hayViajesFechaConductor(DTFecha fecha) const;
     
 };

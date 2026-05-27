@@ -4,6 +4,7 @@
 #include "Usuario.h"
 #include "TipoLibreta.h"
 #include <set>
+#include TipoVehiculo.h
 
 class Conductor : public Usuario {
 private:
@@ -12,7 +13,10 @@ private:
 public:
     Conductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::set<TipoLibreta> libs);
     ~Conductor();
-
+    
+    string getNombre();
+    float getCalificacionPromedio();
+    bool tieneLibret(tipo:TipoVehiculo)
     
 };
 

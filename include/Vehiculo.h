@@ -4,6 +4,8 @@
 #include "TipoVehiculo.h"
 #include <string>
 #include <vector>
+#include DtListarViajes.h>
+#include DtUsuarioViaje.h
 
 class Vehiculo {
 private:

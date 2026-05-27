@@ -16,6 +16,8 @@ private:
     std::string marca;
     std::string modelo;
     TipoVehiculo tipo;
+    std::vector<Viaje> viajes; // Vector para almacenar los viajes asociados al vehículo
+    Conductor conductor; // Asociación con el conductor del vehículo
 
 public:
     Vehiculo(std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo);

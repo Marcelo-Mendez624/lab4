@@ -6,6 +6,8 @@
 #include <vector>
 #include DtListarViajes.h
 #include DtUsuarioViaje.h
+#include DTFecha.h
+
 
 class Vehiculo {
 private:
@@ -21,15 +23,19 @@ public:
     
     //getters
     std::string getMatricula();
+    int getCapacidad();
     std::string getMarca();
     TipoVehiculo getTipo();
-    int getCapacidad();
 
-    
+    std::vector<DTListarViajes> listarViajes(); 
     std::string getConductor();
     float getCalifConductor();
-    DTUsuarioViaje getNickConductor()
-    std::vector<DTListarViajes> listarViajes(); 
+    DTUsuarioViaje getNickConductor();
+    DTVehiculosConductor getDTVehiculoConductor();
+    bool hayViajesConductor(fecha:DTFecha);
+    bool hayViajesFecha(fecha:DTFecha);
+    void asociarViaje(cvi:Viaje);
 };
 
 #endif
+

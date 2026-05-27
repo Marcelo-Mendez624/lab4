@@ -8,7 +8,6 @@
 #include "DTListarViaje.h"
 
 
-class Calificacion;
 
 class Usuario {
 protected:
@@ -17,6 +16,7 @@ protected:
     std::string contrasena;
     std::string email;
     std::vector<Calificacion> calificaciones;
+    std::vector<DTListarViaje> viajes;
 
 public:
     Usuario(std::string nickname, std::string nombre, std::string contrasena, std::string email);

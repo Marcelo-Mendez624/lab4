@@ -6,28 +6,27 @@
 #include <set>
 #include "DTFecha.h"
 #include "DTVehiculosConductor.h"
+#include "Vehiculo.h"
 
-// Forward declaration Revisar
-class vehiculo;
+
 
 class Conductor : public Usuario {
 private:
     std::set<TipoLibreta> libretas;
+    std::vector<Vehiculo> vehiculos;
 
 public:
     Conductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::set<TipoLibreta> libs);
     ~Conductor();
 
-    void agregarVehiculoConductor(vehiculo nuevoVehiculo);
+    void agregarVehiculoConductor(Vehiculo nuevoVehiculo);
 
     std::string getNombreConductor() const { return nombre; }
-
-    float getCalificacionPromedio() const;
 
     bool tieneLibreta(TipoLibreta tipo) const;
 
     std::vector<DTVehiculosConductor> listarVehiculos() const;
-    
+
     bool hayViajesFechaConductor(DTFecha fecha) const;
     
 };

@@ -20,6 +20,8 @@ DTUsuario Usuario::getDTUsuario() const
     return DTUsuario(nickname, nombre);
 }
 
+std::string Usuario::getNickname() const { return this->nickname; }
+
 float Usuario::getCalificacionPromedio() const
 {
     float calificacionTotal = 0;

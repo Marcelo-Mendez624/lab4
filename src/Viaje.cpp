@@ -61,8 +61,7 @@ bool Viaje::relacion(class Pasajero* p)
         bool aux = r->relacionResPas(p);
         res = res || aux;
 
-        if (res)
-            break;
+        if (res) break;
     }
     return res;
 }
@@ -121,7 +120,35 @@ std::vector<DTUsuarioViaje> Viaje::obtenerPasajeros()
     return res;
 }
 
-Reserva Viaje::obtenerReservaCalif(Usuario* u)
+std::vector<Reserva*> Viaje::getReservas() const { return this->reservas; }
+
+std::string Viaje::nickConductor() { return (this->veh)->getConductor(); }
+
+bool Viaje::coincideCalif(Usuario* u, Usuario* u_calif)
 {
+    bool res = false;
+
+    for(const auto& r : reservas)
+    {
+        bool aux = r->existeCal(u, u_calif);
+        res = res || aux;
+        if (res) break;
+    }
+    return res;
+}
+
+Reserva* Viaje::obtenerReservaCalif(Usuario* u, Usuario* u_calif)
+{
+    DTUsuarioViaje dtu = u->getDTUsuarioViaje();
+    TipoUsuario tipo = dtu.getTipo();
+
+    if (tipo == Pasajero)
+        for(const auto& r : reservas)
+            if (r->igualUsuario(u))
+                return r;
     
+    else if (tipo == Conductor)
+        for(const auto& r : reservas)
+            if (r->igualUsuario(u_calif))
+                return r;
 }

@@ -50,9 +50,12 @@ public:
     //listarUsuariosViaje
     std::vector<DTUsuarioViaje> obtenerPasajeros();
     DTUsuarioViaje obtenerConductor();
+    //listarUsuariosViaje V2 asignando responsabilidad al controlador
+    std::vector<Reserva*> getReservas() const;
+    std::string nickConductor();
 
     //calificarUsuario
-    Reserva obtenerReservaCalif(Usuario* u);                            //DCD: agregar usuario como parámetro
+    Reserva* obtenerReservaCalif(Usuario* u, Usuario* u_calif);          //DCD: agregar usuario como parámetro
     bool coincideCalif(Usuario* u, Usuario* u_calif);                   //DCD: coincide en vez de coincideCalif
 };
 

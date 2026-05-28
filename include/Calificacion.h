@@ -16,10 +16,9 @@ private:
 public:
     Calificacion(DTFecha fecha, int puntaje);
     ~Calificacion();
-
     int getPuntaje() const { return puntaje; }
-    bool coicidenUsuario(u: Usuario, u_Calif: usuario);
-    void linkerCalifUsuario(u: Usuario, u_Calif: usuario);
+    bool coicidenUsuario( Usuario* u, Usuario* u_calif);
+    void linkearCalifUsuario(Usuario* u, Usuario* u_calif);
 };
 
 #endif

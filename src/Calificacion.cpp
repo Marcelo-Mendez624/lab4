@@ -7,12 +7,12 @@ Calificacion::Calificacion(DTFecha fecha, int puntaje) {
 
 Calificacion::~Calificacion() {}
 
-bool Calificacion::coicidenUsuario(u: Usuario, u_Calif: usuario) {
-    // Implementación para verificar si el usuario coincide con el usuario de la calificación
-    return u.getNickname() == u_Calif.getNickname();
+bool Calificacion::coicidenUsuario(Usuario*u,Usuario* u_calif) {
+    return  u->getNickname()==this->califica->getNickname() && u_calif->getNickname()==this->calificado->getNickname();
 }
 
-void Calificacion::linkerCalifUsuario(u: Usuario, u_Calif: usuario) {
+void Calificacion::linkearCalifUsuario(Usuario* u,Usuario* u_calif) {
    this->u_calificado=u_calif;
    this->u_califica=u;
 }
+

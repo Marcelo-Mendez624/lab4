@@ -95,7 +95,7 @@ std::vector<DTListarViaje> Viaje::crearDTViajes(class Pasajero* p)
 
     for(const auto& r : reservas)
     {
-        bool iguales = r->coinciden(p);
+        bool iguales = r->igualUsuario(p);
 
         if (iguales)
         {

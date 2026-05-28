@@ -23,9 +23,10 @@ public:
     Vehiculo(std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo);
     ~Vehiculo();
     
-    //getters
-    std::string getMatricula() const;
+    //Getters
     int getCapacidad() const;
+    std::string getMatricula() const;
+    std::string getModelo() const;
     std::string getMarca() const;
     TipoVehiculo getTipo() const;
 

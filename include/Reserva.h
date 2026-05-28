@@ -10,22 +10,22 @@ class Reserva {
 private:
     int asientosReservados;
     DTFecha fecha;
-    Pasajero* pasajero;
+    class Pasajero* pasajero;
     std::vector<Calificacion*> calificaciones;
 public:
     Reserva(int asientosReservados, DTFecha fecha);
     ~Reserva();
     void setAsientosReservados(int a);
     void setFecha(DTFecha f);
-    int getasientosReservados();
+    int getAsientosReservados();
     DTFecha getfecha();
-    void asociarReservaPasajero(Pasajero* p);
-    bool coinciden(Usuario* u);
+    void asociarReservaPasajero(class Pasajero* p);
+    bool coinciden(class Pasajero* p);
     void crearCalificacion(Usuario* u, Usuario* u_calif);
     bool existeCal(Usuario* u, Usuario* u_calif);
     bool igualUsuario(Usuario* u);
-    Pasajero* getPasajero();
-    bool relacionResPas(Pasajero* p);
+    class Pasajero* getPasajero();
+    bool relacionResPas(class Pasajero* p);
     std::string obtenerNickPasajero();
 };
 

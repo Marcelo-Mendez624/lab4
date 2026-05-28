@@ -10,12 +10,16 @@ Vehiculo::Vehiculo(std::string matricula, int capacidad, std::string marca, std:
 
 Vehiculo::~Vehiculo() {}
 
+int Vehiculo::getCapacidad() const {
+    return this->capacidad;
+}
+
 std::string Vehiculo::getMatricula() const {
     return this->matricula;
 }
 
-int Vehiculo::getCapacidad() const {
-    return this->capacidad;
+std::string Vehiculo::getModelo() const {
+    return this->modelo;
 }
 
 std::string Vehiculo::getMarca() const{

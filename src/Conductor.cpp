@@ -41,10 +41,12 @@ std::vector<DTVehiculosConductor> Conductor::listarVehiculos() const
 
 bool Conductor::hayViajesFechaConductor(DTFecha fecha) const
 {
-    for (const auto& viaje : viajes) {
-        if (viaje.getFecha() == fecha) 
+    for (const auto& ve : vehiculos)
+    {
+        for (const auto& vi : ve.getViajes())
         {
-            return true;
+            if (vi.getFecha() == fecha) 
+                return true;
         }
     }
     return false;

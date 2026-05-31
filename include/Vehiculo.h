@@ -4,9 +4,11 @@
 #include "TipoVehiculo.h"
 #include <string>
 #include <vector>
-#include DtListarViajes.h
-#include DtUsuarioViaje.h
-#include DTFecha.h
+#include "DTListarViaje.h"
+#include "DTUsuarioViaje.h"
+#include "DTFecha.h"
+#include "Conductor.h"
+#include "Viaje.h"
 
 
 class Vehiculo {
@@ -17,7 +19,7 @@ private:
     std::string modelo;
     TipoVehiculo tipo;
     std::vector<Viaje> viajes; // Vector para almacenar los viajes asociados al vehículo
-    Conductor conductor; // Asociación con el conductor del vehículo
+    class Conductor conductor; // Asociación con el conductor del vehículo
 
 public:
     Vehiculo(std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo);
@@ -29,15 +31,16 @@ public:
     std::string getModelo() const;
     std::string getMarca() const;
     TipoVehiculo getTipo() const;
+    std::vector<Viaje> getViajes() const;
 
-    std::vector<DTListarViajes> listarViajes(); 
+    std::vector<DTListarViaje> listarViajes(); 
     std::string getConductor() const;
     float getCalifConductor() const;
     DTUsuarioViaje getNickConductor() const;
     DTVehiculosConductor getDTVehiculoConductor() const;
-    bool hayViajesConductor(fecha:DTFecha);
-    bool hayViajesFecha(fecha:DTFecha);
-    void asociarViaje(cvi:Viaje);
+    bool hayViajesConductor(DTFecha fecha);
+    bool hayViajesFecha(DTFecha fecha);
+    void asociarViaje(Viaje cvi);
 };
 
 #endif

@@ -10,7 +10,7 @@ Usuario::Usuario(std::string nickname, std::string nombre, std::string contrasen
 Usuario::~Usuario() {}
 
 
-void Usuario::asociarCalificacion(Calificacion calificacion) 
+void Usuario::asociarCalificacion(Calificacion* calificacion) 
 {
     calificaciones.push_back(calificacion);
 }
@@ -25,9 +25,9 @@ std::string Usuario::getNickname() const { return this->nickname; }
 float Usuario::getCalificacionPromedio() const
 {
     float calificacionTotal = 0;
-    for (const Calificacion& calificacion : calificaciones) 
+    for (const Calificacion* calificacion : calificaciones) 
     {
-        calificacionTotal += calificacion.getPuntaje();
+        calificacionTotal += calificacion->getPuntaje();
     }
     return calificacionTotal / calificaciones.size();
 }

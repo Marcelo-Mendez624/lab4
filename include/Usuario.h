@@ -15,7 +15,7 @@ protected:
     std::string nombre;
     std::string contrasena;
     std::string email;
-    std::vector<Calificacion> calificaciones;
+    std::vector<Calificacion*> calificaciones;
     std::vector<DTListarViaje> viajes; //TODO cuando se cree el controlador quitar
 
 public:
@@ -24,7 +24,7 @@ public:
 
     
     // TODO Revisar include
-    void asociarCalificacion(Calificacion calificacion);
+    void asociarCalificacion(Calificacion* calificacion);
 
     float getCalificacionPromedio() const;
 

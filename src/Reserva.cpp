@@ -20,7 +20,7 @@ DTFecha Reserva:: getfecha(){
   return this->fecha;
 }
 
-void Reserva:: asociarReservaPasajero(Pasajero* p){
+void Reserva:: asociarReservaPasajero(class Pasajero* p){
   this->pasajero=p;
 }
 
@@ -33,7 +33,7 @@ bool Reserva:: igualUsuario (Usuario* u){
     return this->obtenerNickPasajero()==u->getNickname();
 }
 
-Pasajero* Reserva:: getPasajero(){
+class Pasajero* Reserva:: getPasajero(){
   return this->pasajero;
 }
 
@@ -55,7 +55,7 @@ void Reserva:: crearCalificacion(Usuario* u,Usuario* u_calif,int calificacion){
   DTFecha fecha=c->getFecha();
   Calificacion* cal=new Calificacion(fecha,calificacion);
   this->calificaciones.push_back(cal);
-  c->linkearCalifUsuario(u,u_calif);
+  cal->linkearCalifUsuario(u,u_calif);
   u_calif->asociarCalificacion(cal);
 }
 

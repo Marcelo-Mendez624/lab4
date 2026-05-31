@@ -30,6 +30,8 @@ TipoVehiculo Vehiculo::getTipo() const{
     return this->tipo;
 } 
 
+std::vector<Viaje> Vehiculo::getViajes() const { return this->viajes; }
+
 std::vector<DTListarViajes> listarViajes() const {
     // Implementación para listar los viajes asociados al vehículo
     std::vector<DTListarViajes> resultado;

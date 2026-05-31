@@ -7,8 +7,11 @@ Calificacion::Calificacion(DTFecha fecha, int puntaje) {
 
 Calificacion::~Calificacion() {}
 
-bool Calificacion::coicidenUsuario(Usuario*u,Usuario* u_calif) {
-    return  u->getNickname()==this->califica->getNickname() && u_calif->getNickname()==this->calificado->getNickname();
+bool Calificacion::coicidenUsuario(Usuario*u,Usuario* u_calif)
+{
+    return  u->getNickname() == u_califica->getNickname()
+            &&
+            u_calif->getNickname() == u_calificado->getNickname();
 }
 
 void Calificacion::linkearCalifUsuario(Usuario* u,Usuario* u_calif) {

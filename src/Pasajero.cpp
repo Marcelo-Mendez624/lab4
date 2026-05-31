@@ -9,6 +9,6 @@ Pasajero::~Pasajero() {}
 
 DTUsuarioViaje Pasajero::getDTUsuarioViaje()
 {
-    TipoUsuario Pasajero;
-    return DTUsuarioViaje(this->getNickname(), Pasajero);
+    TipoUsuario aux = TipoUsuario::Pasajero;
+    return DTUsuarioViaje(this->getNickname(), aux);
 }

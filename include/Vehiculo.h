@@ -36,7 +36,7 @@ public:
     std::vector<DTListarViaje> listarViajes(); 
     std::string getConductor() const;
     float getCalifConductor() const;
-    DTUsuarioViaje getNickConductor() const;
+    DTUsuarioViaje getNickConductor();
     DTVehiculosConductor getDTVehiculoConductor() const;
     bool hayViajesConductor(DTFecha fecha);
     bool hayViajesFecha(DTFecha fecha);

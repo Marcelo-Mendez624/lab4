@@ -32,21 +32,20 @@ TipoVehiculo Vehiculo::getTipo() const{
 
 std::vector<Viaje> Vehiculo::getViajes() const { return this->viajes; }
 
-std::vector<DTListarViajes> listarViajes() const {
+std::vector<DTListarViaje> Vehiculo::listarViajes() {
     // Implementación para listar los viajes asociados al vehículo
-    std::vector<DTListarViajes> resultado;
+    std::vector<DTListarViaje> resultado;
     for (const auto& viaje : viajes) {
         // Crear un objeto DTListarViajes para cada viaje y agregarlo al vector
-        DTListarViajes dtDetalleViaje(viaje.getCodigo(), viaje.getFecha(), viaje.getOrigen(), viaje.getDestino(), viaje.getAsientosPublicados(), viaje.getPrecio(),
-            viaje.getVehiculo(), viaje.getReservas());
-        resultado.push_back(dtDetalleViaje);
+        DTListarViaje DTListarViaje(viaje.getCodigo(), viaje.getFecha(), viaje.getOrigen(), viaje.getDestino(), conductor.getNickname());
+        resultado.push_back(DTListarViaje);
     }
     return resultado;
 }
 
 std::string Vehiculo::getConductor() const {
     // Implementación para obtener el nombre del conductor asociado al vehículo
-    return conductor.getNombre();
+    return conductor.getNickname();
 }
 
 float Vehiculo::getCalifConductor() const {
@@ -54,9 +53,9 @@ float Vehiculo::getCalifConductor() const {
     return conductor.getCalificacionPromedio();
 }
 
-DTUsuarioViaje Vehiculo::getNickConductor() const {
+DTUsuarioViaje Vehiculo::getNickConductor() {
     // Implementación para obtener el nickname del conductor asociado al vehículo
-    return conductor.getNickname();
+    return conductor.getDTUsuarioViaje();
 }
 
 DTVehiculosConductor Vehiculo::getDTVehiculoConductor() const {

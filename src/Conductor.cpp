@@ -22,8 +22,8 @@ bool Conductor::tieneLibreta(TipoLibreta tipo) const
 
 DTUsuarioViaje Conductor::getDTUsuarioViaje()
 {
-    TipoUsuario Conductor;
-    return DTUsuarioViaje(this->getNickname(), Conductor);
+    TipoUsuario aux = TipoUsuario::Conductor;
+    return DTUsuarioViaje(this->getNickname(), aux);
 }
 
 std::vector<DTVehiculosConductor> Conductor::listarVehiculos() const

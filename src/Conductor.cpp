@@ -17,7 +17,6 @@ void Conductor::agregarVehiculoConductor(Vehiculo nuevoVehiculo)
 
 bool Conductor::tieneLibreta(TipoLibreta tipo) const 
 {
-    libretas.find(tipo);
     return libretas.find(tipo) != libretas.end();
 }
 

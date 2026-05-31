@@ -20,7 +20,7 @@ private:
     int asientosPublicados;
     float precio;
     std::vector<Reserva*> reservas;
-    Vehiculo * veh;
+    Vehiculo* veh;
 
 public:
     Viaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio);
@@ -33,6 +33,7 @@ public:
     DTFecha getFecha() const;
     std::string getOrigen() const;
     std::string getDestino() const;
+    Vehiculo* getVehiculo() const;
 
     //consultarViajes
     bool cumpleDatos(DTFecha fecha, std::string origen, std::string destino);
@@ -42,21 +43,18 @@ public:
     //generarReserva
     bool relacion(class Pasajero* p);
     int totalAsientosRes();
-    Reserva* crearReserva(int asientos, DTFecha fecha);
+    void asociarViajeReserva(Reserva* nr);
 
     //listarViajes
-    std::vector<DTListarViaje> crearDTViajes(class Pasajero* p);        //DCD: Usuario u en vez de Pasajero p (así ahorro un include)
+    std::vector<DTListarViaje> crearDTViajes(class Usuario* u);
 
     //listarUsuariosViaje
-    std::vector<DTUsuarioViaje> obtenerPasajeros();
-    DTUsuarioViaje obtenerConductor();
-    //listarUsuariosViaje V2 asignando responsabilidad al controlador
-    std::vector<Reserva*> getReservas() const;
-    std::string nickConductor();
+    std::vector<DTUsuarioViaje> obtenerPasajeros(std::string nickname);
+    DTUsuarioViaje obtenerConductor(std::string nickname);
 
     //calificarUsuario
-    Reserva* obtenerReservaCalif(Usuario* u, Usuario* u_calif);          //DCD: agregar usuario como parámetro
-    bool coincideCalif(Usuario* u, Usuario* u_calif);                   //DCD: coincide en vez de coincideCalif
+    Reserva* obtenerReservaCalif(Usuario* u, Usuario* u_calif);
+    bool coincideCalif(Usuario* u, Usuario* u_calif);
 };
 
 #endif

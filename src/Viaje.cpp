@@ -23,6 +23,8 @@ std::string Viaje::getOrigen() const { return this->origen; }
 
 std::string Viaje::getDestino() const { return this->destino; }
 
+Vehiculo* Viaje::getVehiculo() const { return this->veh; }
+
 bool Viaje::cumpleDatos(DTFecha fecha, std::string origen, std::string destino)
 {
     bool cond1 = fecha == this->fecha;
@@ -75,27 +77,18 @@ int Viaje::totalAsientosRes()
     return reservados;
 }
 
-Reserva* Viaje::crearReserva(int asientos, DTFecha fecha) 
+void Viaje::asociarViajeReserva(Reserva* nr) 
 {
-    Reserva *nuevaRes = new Reserva(asientos, fecha);
-
-    this->reservas.push_back(nuevaRes);
-    
-    //BITÁCORA DE PIPE:
-    //crearReserva debe retornar la reserva y realizar la función
-    //asociarReservaPasajero desde el controlador ya que el scope
-    //del pasajero p no llega a viaje, por ende no puedo crear el link desde acá.
-
-    return nuevaRes;
+    this->reservas.push_back(nr);
 }
 
-std::vector<DTListarViaje> Viaje::crearDTViajes(class Pasajero* p)
+std::vector<DTListarViaje> Viaje::crearDTViajes(class Usuario* u)
 {
     std::vector<DTListarViaje> res;
 
     for(const auto& r : reservas)
     {
-        bool iguales = r->igualUsuario(p);
+        bool iguales = r->igualUsuario(u);
 
         if (iguales)
         {
@@ -107,34 +100,23 @@ std::vector<DTListarViaje> Viaje::crearDTViajes(class Pasajero* p)
 }
 
 
-std::vector<DTUsuarioViaje> Viaje::obtenerPasajeros() 
+std::vector<DTUsuarioViaje> Viaje::obtenerPasajeros(std::string nickname) 
 {
     std::vector<DTUsuarioViaje> res;
 
     for (const auto& r : reservas) 
     {
-        std::string dtp = r->obtenerNickPasajero();
-        //BITÁCORA DE PIPE:
-        //Ni idea cómo representar el dato recordado por el sistema.
+        std::string nick = r->obtenerNickPasajero();
+        if (nick != nickname)
+            res.push_back(DTUsuarioViaje(nick, Pasajero));
     }
     return res;
 }
 
-std::vector<Reserva*> Viaje::getReservas() const { return this->reservas; }
-
-std::string Viaje::nickConductor() { return (this->veh)->getConductor(); }
-
-bool Viaje::coincideCalif(Usuario* u, Usuario* u_calif)
+DTUsuarioViaje Viaje::obtenerConductor(std::string nickname)
 {
-    bool res = false;
-
-    for(const auto& r : reservas)
-    {
-        bool aux = r->existeCal(u, u_calif);
-        res = res || aux;
-        if (res) break;
-    }
-    return res;
+    Vehiculo* ve = getVehiculo();
+    return DTUsuarioViaje(ve->getNickConductor(), Conductor);
 }
 
 Reserva* Viaje::obtenerReservaCalif(Usuario* u, Usuario* u_calif)
@@ -151,4 +133,17 @@ Reserva* Viaje::obtenerReservaCalif(Usuario* u, Usuario* u_calif)
         for(const auto& r : reservas)
             if (r->igualUsuario(u_calif))
                 return r;
+}
+
+bool Viaje::coincideCalif(Usuario* u, Usuario* u_calif)
+{
+    bool res = false;
+
+    for(const auto& r : reservas)
+    {
+        bool aux = r->existeCal(u, u_calif);
+        res = res || aux;
+        if (res) break;
+    }
+    return res;
 }

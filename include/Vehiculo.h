@@ -18,8 +18,8 @@ private:
     std::string marca;
     std::string modelo;
     TipoVehiculo tipo;
-    std::vector<Viaje> viajes; // Vector para almacenar los viajes asociados al vehículo
-    class Conductor conductor; // Asociación con el conductor del vehículo
+    std::vector<Viaje*> viajes; // Vector para almacenar los viajes asociados al vehículo
+    class Conductor* conductor; // Asociación con el conductor del vehículo
 
 public:
     Vehiculo(std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo);
@@ -31,16 +31,16 @@ public:
     std::string getModelo() const;
     std::string getMarca() const;
     TipoVehiculo getTipo() const;
-    std::vector<Viaje> getViajes() const;
+    std::vector<Viaje*> getViajes() const;
 
     std::vector<DTListarViaje> listarViajes(); 
     std::string getConductor() const;
     float getCalifConductor() const;
-    DTUsuarioViaje getNickConductor();
+    std::string getNickConductor();
     DTVehiculosConductor getDTVehiculoConductor() const;
     bool hayViajesConductor(DTFecha fecha);
     bool hayViajesFecha(DTFecha fecha);
-    void asociarViaje(Viaje cvi);
+    void asociarViaje(Viaje* cvi);
 };
 
 #endif

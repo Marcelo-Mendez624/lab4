@@ -6,3 +6,9 @@ Pasajero::Pasajero(std::string nickname, std::string nombre, std::string contras
 }
 
 Pasajero::~Pasajero() {}
+
+DTUsuarioViaje Pasajero::getDTUsuarioViaje()
+{
+    TipoUsuario Pasajero;
+    return DTUsuarioViaje(this->getNickname(), Pasajero);
+}

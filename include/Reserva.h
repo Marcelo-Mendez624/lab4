@@ -5,28 +5,31 @@
 #include "DTFecha.h"
 #include "Pasajero.h"
 #include "Usuario.h"
+#include "Calificacion.h"
+#include "ControladorFechaActual.h"
+#include <list>
 
 class Reserva {
 private:
     int asientosReservados;
     DTFecha fecha;
-    Pasajero* pasajeros;
+    class Pasajero* pasajero;
+    std::list<Calificacion*> calificaciones;
 public:
     Reserva(int asientosReservados, DTFecha fecha);
     ~Reserva();
     void setAsientosReservados(int a);
     void setFecha(DTFecha f);
-    int getasientosReservados();
+    int getAsientosReservados();
     DTFecha getfecha();
-    void asociarReservaPasajero(Pasajero* p);
-    bool coinciden(Usuario* u);
-    void crearCalificacion(Usuario* u, Usuario* u_calif);
+    void asociarReservaPasajero(class Pasajero* p);
+    void crearCalificacion(Usuario* u, Usuario* u_calif, int calificacion);
+     std::list<Calificacion*> getCalificaciones();
     bool existeCal(Usuario* u, Usuario* u_calif);
     bool igualUsuario(Usuario* u);
-    Pasajero* getPasajero();
-    bool relacionResPas(Pasajero* p);
+    class Pasajero* getPasajero();
+    bool relacionResPas(class Pasajero* p);
     std::string obtenerNickPasajero();
-    const std::map<std::string, Pasajero*>& getPasajeros();
 };
 
 #endif

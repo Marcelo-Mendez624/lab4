@@ -25,6 +25,8 @@ public:
 
     bool tieneLibreta(TipoLibreta tipo) const;
 
+    DTUsuarioViaje getDTUsuarioViaje() override;
+
     std::vector<DTVehiculosConductor> listarVehiculos() const;
 
     bool hayViajesFechaConductor(DTFecha fecha) const;

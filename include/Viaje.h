@@ -19,7 +19,7 @@ private:
     std::string destino;
     int asientosPublicados;
     float precio;
-    std::vector<Reserva> reservas;
+    std::vector<Reserva*> reservas;
     Vehiculo * veh;
 
 public:
@@ -40,20 +40,23 @@ public:
     DTConsultaViaje crearDTConsultaViaje();
 
     //generarReserva
-    bool relacion(Pasajero p);
+    bool relacion(class Pasajero* p);
     int totalAsientosRes();
-    void crearReserva(int asientos, DTFecha fecha);
+    Reserva* crearReserva(int asientos, DTFecha fecha);
 
     //listarViajes
-    std::vector<DTListarViaje> crearDTViajes(Pasajero p);       //DCD: Usuario u en vez de Pasajero p (así ahorro un include)
+    std::vector<DTListarViaje> crearDTViajes(class Pasajero* p);        //DCD: Usuario u en vez de Pasajero p (así ahorro un include)
 
     //listarUsuariosViaje
     std::vector<DTUsuarioViaje> obtenerPasajeros();
     DTUsuarioViaje obtenerConductor();
+    //listarUsuariosViaje V2 asignando responsabilidad al controlador
+    std::vector<Reserva*> getReservas() const;
+    std::string nickConductor();
 
     //calificarUsuario
-    Reserva obtenerReservaCalif();
-    bool coincideCalif(Usuario u, Usuario u_calif);             //DCD: coincide en vez de coincideCalif
+    Reserva* obtenerReservaCalif(Usuario* u, Usuario* u_calif);          //DCD: agregar usuario como parámetro
+    bool coincideCalif(Usuario* u, Usuario* u_calif);                   //DCD: coincide en vez de coincideCalif
 };
 
 #endif

@@ -30,7 +30,11 @@ public:
 
     DTUsuario getDTUsuario() const;
 
+    std::string getNickname() const;
+
     std::vector<DTListarViaje> getViajes() const; 
+
+    virtual DTUsuarioViaje getDTUsuarioViaje() = 0;  //polimórfica
     
 };
 

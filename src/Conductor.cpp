@@ -20,6 +20,12 @@ bool Conductor::tieneLibreta(TipoLibreta tipo) const
     return libretas.find(tipo) != libretas.end();
 }
 
+DTUsuarioViaje Conductor::getDTUsuarioViaje()
+{
+    TipoUsuario Conductor;
+    return DTUsuarioViaje(this->getNickname(), Conductor);
+}
+
 std::vector<DTVehiculosConductor> Conductor::listarVehiculos() const
 {
     std::vector<DTVehiculosConductor> dtVehiculos;

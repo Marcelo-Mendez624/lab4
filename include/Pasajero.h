@@ -2,6 +2,7 @@
 #define PASAJERO_H
 
 #include "Usuario.h"
+#include "DTUsuarioViaje.h"
 #include <string>
 
 class Pasajero : public Usuario {
@@ -13,6 +14,7 @@ public:
     ~Pasajero();
 
     std::string getCi();
+    DTUsuarioViaje getDTUsuarioViaje() override;
 };
 
 #endif

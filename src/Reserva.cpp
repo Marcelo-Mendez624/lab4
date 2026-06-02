@@ -51,7 +51,7 @@ bool Reserva:: existeCal(Usuario* u, Usuario* u_calif){
 }
 
 void Reserva:: crearCalificacion(Usuario* u,Usuario* u_calif,int calificacion){
-  ControladorFechaActual* c = ControladorFechaActual::getInstancia();
+  ControladorFechaActual* c = ControladorFechaActual::getInstance();
   DTFecha fecha=c->getFecha();
   Calificacion* cal=new Calificacion(fecha,calificacion);
   this->calificaciones.push_back(cal);

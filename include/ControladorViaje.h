@@ -5,7 +5,7 @@
 #include "DTUsuarioViaje.h"
 #include <vector>
 
-class ControllerViaje {
+class ControladorViaje {
 private:
 
 public:

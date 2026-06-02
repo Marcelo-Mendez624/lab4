@@ -3,6 +3,11 @@ ControladorUsuario::ControladorUsuario()
 {
     
 }
+ControladorUsuario* ControladorUsuario:: getInstance(){
+  if (instancia==NULL)
+    instancia = new ControladorUsuario();
+  return instancia;
+}
 
 ControladorUsuario::~ControladorUsuario() 
 {

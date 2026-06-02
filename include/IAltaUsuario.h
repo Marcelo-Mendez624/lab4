@@ -3,7 +3,7 @@
 
 #include <string>
 #include <vector>
-#include "Tipolibreta.h"
+#include "TipoLibreta.h"
 #include "TipoVehiculo.h"
 
 class IAltaUsuario

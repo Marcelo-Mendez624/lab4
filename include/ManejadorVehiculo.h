@@ -5,9 +5,9 @@ class ManejadorVehiculo {
 private:
     static ManejadorVehiculo* inst;
     std::vector<Vehiculo*> vehiculos;
+    ManejadorVehiculo();
 
 public:
-    ManejadorVehiculo();
     static ManejadorVehiculo* getInstance();
     bool existeVeh(std::string matricula);
     Vehiculo* obtenerVeh(std::string matricula);

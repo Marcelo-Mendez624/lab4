@@ -30,10 +30,11 @@ std::map<std::string, Usuario *> ManejadorUsuario:: getUsuarios(){
 
 void ManejadorUsuario:: nuevoPasajero(std::string nick, std::string nombre, std::string contrasena, std::string email, std::string ci){
   class Pasajero* p = new class Pasajero(nick, nombre, contrasena, email, ci);
-}
+  this->agregarUsuario(p);
+};
 
 void ManejadorUsuario::nuevoConductor(std::string nick, std::string nombre, std::string contrasena, std::string email, std::set<TipoLibreta> libretas){
 
   class Conductor *c = new class Conductor(nick, nombre, contrasena, email, libretas);
-}
-
+  this->agregarUsuario(c);
+};

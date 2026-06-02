@@ -8,13 +8,14 @@
 class ManejadorViaje{
 private:
     static ManejadorViaje* instancia;
-    std :map<std::string, Viaje*> viajes;
+    std::map<std::string, Viaje*> viajes;
     ManejadorViaje();
 public:
-    agregarViaje(Viaje* viaje);
+    void agregarViaje(Viaje* viaje);
     static ManejadorViaje* getInstance();
-    std :map<std::string, Viaje*> getViajes();
+    std::map<std::string, Viaje*> getViajes();
     Viaje* obtenerViaje(int codigo);
+    Viaje* crearViaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio);
     ~ManejadorViaje();
 };
     

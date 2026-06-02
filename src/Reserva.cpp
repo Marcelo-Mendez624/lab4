@@ -25,7 +25,7 @@ void Reserva:: asociarReservaPasajero(class Pasajero* p){
 }
 
 std::string Reserva:: obtenerNickPasajero(){
-  Pasajero* p= this->pasajero;
+  class Pasajero* p= this->pasajero;
   return p->getNickname();
 }
 

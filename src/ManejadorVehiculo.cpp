@@ -1,8 +1,9 @@
 #include "../include/ManejadorVehiculo.h"
 
+ManejadorVehiculo* ManejadorVehiculo::inst = NULL;
+
 ManejadorVehiculo::ManejadorVehiculo()
-{
-    this->inst = NULL;
+{   
 }
 
 ManejadorVehiculo* ManejadorVehiculo::getInstance()

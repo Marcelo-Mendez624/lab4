@@ -1,5 +1,6 @@
 #include "../include/ControladorCalificacion.h"
 #include "../include/ManejadorUsuario.h"
+#include "../include/ManejadorViaje.h"
 
 
 ControladorCalificacion* ControladorCalificacion::instancia = nullptr;
@@ -45,7 +46,9 @@ std::vector<DTListarViaje> ControladorCalificacion::listarViajes(std::string nic
 std::map<std::string, DTUsuarioViaje> ControladorCalificacion::listarUsuariosViaje(int codigo) {
     
     this->codigoViaje = codigo;
-    Viaje* vi =  ManejadorViaje::getInstance()->obtenerViaje(codigo);
+    
+    ManejadorViaje* mv =  mv->getInstance();
+    Viaje* vi =  mv->obtenerViaje(codigo);
 
     std::vector<DTUsuarioViaje> op = vi->obtenerPasajeros(this->nickname);
     DTUsuarioViaje oc = vi->obtenerConductor(this->nickname);

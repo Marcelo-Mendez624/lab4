@@ -1,4 +1,7 @@
 #include "../include/ControladorUsuario.h"
+#include "../include/ManejadorUsuario.h"
+#include "../include/ManejadorVehiculo.h"
+
 ControladorUsuario::ControladorUsuario() 
 {
     
@@ -14,20 +17,37 @@ ControladorUsuario::~ControladorUsuario()
     
 }
 
-bool ControladorUsuario::AltaPasajero(std::string nombre, std::string contrasena, std::string email, std::string ci) 
+bool ControladorUsuario::AltaPasajero(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::string ci) 
 {
-    // Implementación de la lógica para dar de alta a un pasajero
-    return true; // Retorna true si el alta fue exitosa, false en caso contrario
+  ManejadorUsuario* m = m->getInstance();
+  
+  if (m->existeUsuario(nickname)) return false;
+
+  else m->nuevoPasajero(nickname, nombre, contrasena, email, ci);
+  return true;
 }
 
-bool ControladorUsuario::AltaConductor(std::string nombre, std::string contrasena, std::string email, std::vector<TipoLibreta> libretas) 
+bool ControladorUsuario::AltaConductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::set<TipoLibreta> libretas) 
 {
-    // Implementación de la lógica para dar de alta a un conductor
-    return true; // Retorna true si el alta fue exitosa, false en caso contrario
+  ManejadorUsuario* m = m->getInstance();
+  
+  if (m->existeUsuario(nickname)) return false;
+
+  else m->nuevoConductor(nickname, nombre, contrasena, email, libretas);
+  return true;
 }
 
-int ControladorUsuario::registrarVehiculo(std::string nickname, std::string matricula, int capacidad, std::string marca, TipoVehiculo tipo) 
+int ControladorUsuario::registrarVehiculo(std::string nickname, std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo) 
 {
-    // Implementación de la lógica para registrar un vehículo
-    return 0; // Retorna un identificador único para el vehículo registrado
+  ManejadorVehiculo* mv = mv->getInstance();
+  ManejadorUsuario* mu = mu->getInstance();
+  if (mv->existeVeh(matricula)) return -1;
+
+  Usuario* u = mu->obtenerUsuario(nickname);
+  class Conductor* c = dynamic_cast<class Conductor*>(u);
+  if (!(c->tieneLibreta(tipo))) return -2;
+  
+  Vehiculo* nv = mv->nuevoVehiculo(matricula, capacidad, marca, modelo, tipo);
+  c->agregarVehiculoConductor(nv);
+  return 0;
 }

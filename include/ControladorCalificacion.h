@@ -15,12 +15,12 @@ private:
 
 public:
     static ControladorCalificacion* getInstance();
-    bool calificarUsuario(std::string nicknameCalificado, int calificacion);
     std::map<std::string, DTUsuario> listarUsuarios();
     std::map<std::string, DTConsultaViaje> listarViajes(std::string nickname);
     std::map<std::string, DTUsuarioViaje> listarUsuariosViaje(int codigo);
-    
+    bool calificarUsuario(std::string nicknameCalificado, int calificacion);
+
     ~ControladorCalificacion();
-}
+};
 
 #endif // CONTROLADOR_CALIFICACION_

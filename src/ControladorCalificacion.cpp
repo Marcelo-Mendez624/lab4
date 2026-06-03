@@ -38,8 +38,18 @@ std::map<std::string, DTConsultaViaje> ControladorCalificacion::listarViajes(std
 }
 
 std::map<std::string, DTUsuarioViaje> ControladorCalificacion::listarUsuariosViaje(int codigo) {
-    std::map<std::string, DTUsuarioViaje> usuariosViaje;
-    return usuariosViaje;
+    
+    this->codigoViaje = codigo;
+    Viaje* vi =  ManejadorViaje::getInstance()->obtenerViaje(codigo);
+
+    std::vector<DTUsuarioViaje> op = vi->obtenerPasajeros(this->nickname);
+    DTUsuarioViaje oc = vi->obtenerConductor(this->nickname);
+
+    std::map<std::string, DTUsuarioViaje> resultado;
+    resultado.insert(op.begin(), op.end());
+    resultado.insert({oc.getNickname(), oc});
+
+    return resultado;
 }
 
 bool ControladorCalificacion::calificarUsuario(std::string nicknameCalificado, int calificacion) {

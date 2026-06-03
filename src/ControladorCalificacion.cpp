@@ -80,7 +80,6 @@ bool ControladorCalificacion::calificarUsuario(std::string nicknameCalificado, i
         this->nickname = "";
         this->codigoViaje = -1; 
         return true;
-
     } else {
         return false;
     }

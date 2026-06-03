@@ -55,7 +55,7 @@ std::string Vehiculo::getNickConductor() {
 }
 
 DTVehiculosConductor Vehiculo::getDTVehiculoConductor() const {
-    return DTVehiculosConductor(matricula, capacidad, marca, modelo, tipo, conductor->getNickname(), conductor->getCalificacionPromedio());
+    return DTVehiculosConductor(matricula, modelo, capacidad);
 }
 
 bool Vehiculo::hayViajesConductor(DTFecha fecha) {

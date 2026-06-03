@@ -61,5 +61,27 @@ std::map<std::string, DTUsuarioViaje> ControladorCalificacion::listarUsuariosVia
 }
 
 bool ControladorCalificacion::calificarUsuario(std::string nicknameCalificado, int calificacion) {
-    return true;
+    
+    ManejadorUsuario* mu = mu->getInstance();
+    ManejadorViaje* mv =  mv->getInstance();
+    
+    Usuario* obtenerUsuario = mu->obtenerUsuario(nicknameCalificado);
+    Usuario* u = mu->obtenerUsuario(this->nickname);
+
+    Viaje* vi = mv->obtenerViaje(this->codigoViaje);
+
+    bool coincide = vi->coincideCalif(u, obtenerUsuario);
+
+    if(!coincide){
+        Reserva* r = vi->obtenerReservaCalif(u, obtenerUsuario);
+        r->crearCalificacion(u, obtenerUsuario, calificacion);
+
+        //no estoy seguro si se hace asi eliminar el nickname recodado y codigo recordado, pero asi intuyo o seria coherente
+        this->nickname = "";
+        this->codigoViaje = -1; 
+        return true;
+
+    } else {
+        return false;
+    }
 }

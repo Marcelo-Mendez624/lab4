@@ -5,7 +5,7 @@
 #include <string>
 #include "DTConsultaViaje.h"
 
-class IControladorReserva
+class IGenerarReserva
 {
 public:
 

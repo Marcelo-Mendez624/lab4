@@ -11,11 +11,11 @@
 class ControladorReserva : public IGenerarReserva 
 {
   private:
-    static ControladorReserva *instancia;
+    static ControladorReserva *instance;
     ControladorReserva();
 
   public:
-    static ControladorReserva *getInstancia();
+    static ControladorReserva *getInstance();
     std::list<std::string> listarUsuarios() ;
     std::set<DTConsultaViaje> consultarViajes(DTFecha fecha,std::string origen,std::string destino,int asientos);
     bool generarReserva (std::string nickname,int codigo,int asientos) ;

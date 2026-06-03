@@ -32,10 +32,15 @@ std::map<std::string, DTUsuario> ControladorCalificacion::listarUsuarios() {
     return usuarios;
 }
 
-std::map<std::string, DTConsultaViaje> ControladorCalificacion::listarViajes(std::string nickname) {
-    std::map<std::string, DTConsultaViaje> viajes;
-    return viajes;
+std::vector<DTListarViaje> ControladorCalificacion::listarViajes(std::string nickname) {
+    
+    this->nickname = nickname;
+    Usuario* mu =  ManejadorUsuario::getInstance()->obtenerUsuario(nickname);
+    std::vector<DTListarViaje> res = mu->getViajes();
+
+    return res;
 }
+
 
 std::map<std::string, DTUsuarioViaje> ControladorCalificacion::listarUsuariosViaje(int codigo) {
     

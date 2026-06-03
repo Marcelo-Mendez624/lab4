@@ -50,8 +50,8 @@ float Vehiculo::getCalifConductor() const {
     return conductor->getCalificacionPromedio();
 }
 
-DTUsuarioViaje Vehiculo::getNickConductor() {
-    return conductor->getDTUsuarioViaje();
+std::string Vehiculo::getNickConductor() {
+    return conductor->getDTUsuarioViaje().getNickname();
 }
 
 DTVehiculosConductor Vehiculo::getDTVehiculoConductor() const {

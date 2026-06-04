@@ -47,7 +47,7 @@ public:
     void asociarViajeReserva(Reserva* nr);
 
     //listarViajes
-    std::vector<DTListarViaje> crearDTViajes(class Usuario* u);
+    std::vector<DTListarViaje> crearDTViajes(const class Usuario* u);
 
     //listarUsuariosViaje
     std::vector<DTUsuarioViaje> obtenerPasajeros(std::string nickname);

@@ -8,6 +8,9 @@
 #include <string>
 
 void Menu::altaUsuario() {
+    //Llamo a la Fabrica
+    Fabrica *f = Fabrica::getInstance();
+    IAltaUsuario *controlador = f->getIAltaUsuario();
     int tipoUsuario;
     std::cout << "1. Alta Pasajero\n";
     std::cout << "2. Alta Conductor\n";
@@ -32,9 +35,11 @@ void Menu::altaUsuario() {
     if (tipoUsuario == 1) {
         std::string ci;
         std::cout << "Ingrese CI: "; std::getline(std::cin, ci);
-        //TODO: usuarioOk = controlador->altaPasajero(nickname, nombre, contrasena, email, ci)
+        //TODO: usuarioOk = controlador->altaPasajero(nickname, nombre, contrasena, email, ci) (HECHO!!)
+        usuarioOk = controlador->AltaPasajero(nickname, nombre, contrasena, email, ci);
     } else if (tipoUsuario == 2) {
         //TODO: usuarioOk = controlador->altaConductor(nickname, nombre, contrasena, email, libretas)
+        usuarioOk = controlador->AltaConductor(nickname, nombre, contrasena, email,libretas);
         int agregarVehiculo = 1;
         while (usuarioOk == true && agregarVehiculo == 1) {
             std::string matricula, marca, modelo;
@@ -48,7 +53,8 @@ void Menu::altaUsuario() {
             std::cout << "Ingrese tipo (0: Auto, 1: Moto): "; std::cin >> tipo;
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             int resultadoRegistrarVehiculo = -3;
-            //TODO: resultadoRegistrarVehiculo = controlador->registrarVehiculo(nickname, matricula, capacidad, marca, modelo, tipo)
+            //TODO: resultadoRegistrarVehiculo = controlador->registrarVehiculo(nickname, matricula, capacidad, marca, modelo, tipo) (HECHO!!)
+            resultadoRegistrarVehiculo = controlador->registrarVehiculo(nickname, matricula, capacidad, marca, modelo,(TipoVehiculo)tipo);
             if (resultadoRegistrarVehiculo == -1) {
                 std::cout << "Ya existe un vehiculo con esa matricula.\n";
             } else if (resultadoRegistrarVehiculo == -2) {
@@ -64,21 +70,40 @@ void Menu::altaUsuario() {
 }
 
 void Menu::altaViaje() {
-    std::string nickname, matricula, origen, destino;
-    int dia, mes, anio, asientos;
-    float precio;
+  Fabrica *f = Fabrica::getInstance();
+  IAltaViaje *controlador = f->getIAltaViaje();
+  std::string nickname, matricula, origen, destino;
+  int dia, mes, anio, asientos;
+  float precio;
 
-    std::cout << "Ingrese nickname del conductor: "; std::getline(std::cin, nickname);
-    //TODO: Coleccion de DTVehiculosConductor = controlador->listarVehiculosConductor(nickname)
-    //TODO: Recorrer la coleccion y mostrar "> Matricula: xx, Capacidad: yy, Marca: zzz, Modelo: www, Tipo: ttt"
+  std::cout << "Ingrese nickname del conductor: ";
+  std::getline(std::cin, nickname);
+  
+  // TODO: Coleccion de DTVehiculosConductor = controlador->listarVehiculosConductor(nickname) (Hecho!!)
 
-    std::cout << "Ingrese matricula del vehiculo a utilizar: "; std::getline(std::cin, matricula);
-    bool matriculaValida = false;
-    //TODO: Validar matricula en listado
-    if (!matriculaValida) {
-        std::cout << "Matricula invalida.\n";
-        return;
-    }
+  std::vector<DTVehiculosConductor> col = controlador->listarVehiculosConductor(nickname);
+
+  // TODO: Recorrer la coleccion y mostrar "> Matricula: xx, Capacidad: yy, Marca: zzz, Modelo: www, Tipo: ttt" Nota de Joaco: Marca y tipo no están en el DTVehiculosConductor
+  for (std::vector<DTVehiculosConductor>::iterator it =col.begin(); it != col.end();++it)
+    std::cout << "Matricula: " << it->getMatricula()<< ", Capacidad: " << it->getCapacidad() << ", Modelo: " << it->getModelo() <<"\n";
+
+    std::cout << "Ingrese matricula del vehiculo a utilizar: ";
+  std::getline(std::cin, matricula);
+  bool matriculaValida = false;
+  // TODO: Validar matricula en listado (Hecho!!)
+  std::vector<DTVehiculosConductor>::iterator it = col.begin();
+  while (it!=col.end() && !matriculaValida){
+    if (it->getMatricula()==matricula)
+      matriculaValida = true;
+    else
+      ++it;
+  }
+
+  if (!matriculaValida)
+  {
+    std::cout << "Matricula invalida.\n";
+    return;
+  }
 
     std::cout << "Ingrese fecha del viaje (dia mes anio): "; std::cin >> dia >> mes >> anio;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -88,7 +113,10 @@ void Menu::altaViaje() {
     std::cout << "Ingrese precio por asiento: "; std::cin >> precio;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     bool viajeOk = false;
-    //TODO: viajeOk = controlador->altaViaje(matricula, DTFecha(dia, mes, anio), origen, destino, asientos, precio)
+    //TODO: viajeOk = controlador->altaViaje(matricula, DTFecha(dia, mes, anio), origen, destino, asientos, precio) (Hecho!!)
+
+    viajeOk = controlador->altaViaje(matricula, DTFecha(dia, mes, anio), origen, destino, asientos, precio);
+
     if (viajeOk) {
         std::cout << "Viaje registrado exitosamente.\n";
     } else {
@@ -97,17 +125,38 @@ void Menu::altaViaje() {
 }
 
 void Menu::generarReserva() {
-    //TODO: Colecion de String = controlador->listarPasajeros()
-    //TODO: Recorrer la colección y mostrar "> xx"
-    std::string nickname;
-    std::cout << "Ingrese nickname del pasajero: "; std::getline(std::cin, nickname);
+  //Llamo a la Fábrica
+  Fabrica *f = Fabrica::getInstance();
+  IGenerarReserva *controlador = f->getIGenerarReserva();
+  
+  // TODO: Colecion de String = controlador->listarPasajeros() (Hecho!!)
+  std::list<std::string> colP = controlador->listarPasajeros();
 
-    bool nicknameValido = false;
-    //TODO: Validar nickname en listado
-    if (!nicknameValido) {
-        std::cout << "Nickname invalido.\n";
-        return;
+  // TODO: Recorrer la colección y mostrar "> xx" (Hecho!!)
+
+  for (std::list<std::string>::iterator it = colP.begin(); it != colP.end();++it){
+    std::cout << "> " << *it << "\n";
+  }
+    std::string nickname;
+  std::cout << "Ingrese nickname del pasajero: ";
+  std::getline(std::cin, nickname);
+
+  bool nicknameValido = false;
+ 
+  // TODO: Validar nickname en listado (Hecho!!)
+  std::list<std::string>::iterator it = colP.begin();
+  while (it!=colP.end()&& !nicknameValido){
+    if (*it==nickname)
+      nicknameValido = true;
+    else
+      ++it;
     }
+
+  if (!nicknameValido)
+  {
+    std::cout << "Nickname invalido.\n";
+    return;
+  }
 
     int dia, mes, anio, asientos;
     std::string origen, destino;
@@ -118,10 +167,16 @@ void Menu::generarReserva() {
     std::cout << "Ingrese cantidad de asientos a reservar: "; std::cin >> asientos;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-    //TODO: Coleccion de DTConsultaViaje = controlador->consultarViajes(DTFecha(dia, mes, anio), origen, destino, asientos)
-    //TODO: Recorrer la coleccion y mostrar: "> Codigo: xx, Marca: yy, Modelo: zzz, Conductor: aaa, CalificacionPromedio: qqq, PrecioTotal: eee"
+    //TODO: Coleccion de DTConsultaViaje = controlador->consultarViajes(DTFecha(dia, mes, anio), origen, destino, asientos) (Hecho!!)
 
-    bool hayViajes = false;//TODO: Validar coleccion vacía
+    std::set<DTConsultaViaje> col = controlador->consultarViajes(DTFecha(dia, mes, anio), origen, destino, asientos);
+
+    //TODO: Recorrer la coleccion y mostrar: "> Codigo: xx, Marca: yy, Modelo: zzz, Conductor: aaa, CalificacionPromedio: qqq, PrecioTotal: eee" (Hecho!!)
+
+    for (std::set<DTConsultaViaje>::iterator it = col.begin(); it != col.end();++it)
+      std::cout << "< Codigo: " << it->getCodigo() << ", Marca: " << it->getMarca() << ", Modelo: " << it->getModelo() << ", Conductor: " << it->getConductor() << ", CalificacionPromedio: " << it->getCalificacionProm() << ", PrecioTotal: " << it->getPrecioTotal() << "\n";
+
+      bool hayViajes = false; // TODO: Validar coleccion vacía
     if (!hayViajes) {
         std::cout << "No hay viajes disponibles.\n";
         return;

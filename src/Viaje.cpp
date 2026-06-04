@@ -83,7 +83,7 @@ void Viaje::asociarViajeReserva(Reserva* nr)
     this->reservas.push_back(nr);
 }
 
-std::vector<DTListarViaje> Viaje::crearDTViajes(class Usuario* u)
+std::vector<DTListarViaje> Viaje::crearDTViajes(const class Usuario* u)
 {
     std::vector<DTListarViaje> res;
 

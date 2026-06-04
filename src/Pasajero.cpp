@@ -12,3 +12,8 @@ DTUsuarioViaje Pasajero::getDTUsuarioViaje()
     TipoUsuario aux = TipoUsuario::Pasajero;
     return DTUsuarioViaje(this->getNickname(), aux);
 }
+
+void Pasajero::asociarPasajeroReserva(Reserva* r)
+{
+    reservas.push_back(r);
+}

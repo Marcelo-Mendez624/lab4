@@ -34,5 +34,5 @@ float Usuario::getCalificacionPromedio() const
 
 std::vector<DTListarViaje> Usuario::getViajes() const
 {
-    return viajes;
+    return viajes; //FALTA IMPLEMENTAR LA LOGICA, IMPORTANTE
 }

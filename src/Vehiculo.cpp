@@ -33,7 +33,6 @@ TipoVehiculo Vehiculo::getTipo() const{
 std::vector<Viaje*> Vehiculo::getViajes() const { return this->viajes; }
 
 std::vector<DTListarViaje> Vehiculo::listarViajes() {
-    // Implementación para listar los viajes asociados al vehículo
     std::vector<DTListarViaje> resultado;
     for (const auto& viaje : viajes) {
         // Crear un objeto DTListarViajes para cada viaje y agregarlo al vector
@@ -44,27 +43,22 @@ std::vector<DTListarViaje> Vehiculo::listarViajes() {
 }
 
 std::string Vehiculo::getConductor() const {
-    // Implementación para obtener el nombre del conductor asociado al vehículo
     return conductor->getNickname();
 }
 
 float Vehiculo::getCalifConductor() const {
-    // Implementación para obtener la calificación promedio del conductor asociado al vehículo
     return conductor->getCalificacionPromedio();
 }
 
-DTUsuarioViaje Vehiculo::getNickConductor() {
-    // Implementación para obtener el nickname del conductor asociado al vehículo
-    return conductor->getDTUsuarioViaje();
+std::string Vehiculo::getNickConductor() {
+    return conductor->getDTUsuarioViaje().getNickname();
 }
 
 DTVehiculosConductor Vehiculo::getDTVehiculoConductor() const {
-    // Implementación para obtener un objeto DTVehiculosConductor con los detalles del vehículo y su conductor
-    return DTVehiculosConductor(matricula, capacidad, marca, modelo, tipo, conductor->getNickname(), conductor->getCalificacionPromedio());
+    return DTVehiculosConductor(matricula, modelo, capacidad);
 }
 
 bool Vehiculo::hayViajesConductor(DTFecha fecha) {
-    // Implementación para verificar si hay viajes asociados al conductor en una fecha específica
     for (const auto& viaje : viajes) {
         if (viaje->getFecha() == fecha) {
             return true;
@@ -74,7 +68,6 @@ bool Vehiculo::hayViajesConductor(DTFecha fecha) {
 }
 
 bool Vehiculo::hayViajesFecha(DTFecha fecha) {
-    // Implementación para verificar si hay viajes asociados al vehículo en una fecha específica
     for (const auto& viaje : viajes) {
         if (viaje->getFecha() == fecha) {
             return true;
@@ -84,7 +77,6 @@ bool Vehiculo::hayViajesFecha(DTFecha fecha) {
 }
 
 void Vehiculo::asociarViaje(Viaje* cvi) {
-    // Implementación para asociar un viaje al vehículo
     viajes.push_back(cvi);
 }
  

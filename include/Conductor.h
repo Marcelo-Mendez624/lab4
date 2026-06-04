@@ -13,17 +13,17 @@
 class Conductor : public Usuario {
 private:
     std::set<TipoLibreta> libretas;
-    std::vector<Vehiculo> vehiculos;
+    std::vector<Vehiculo*> vehiculos;
 
 public:
     Conductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::set<TipoLibreta> libs);
     ~Conductor();
 
-    void agregarVehiculoConductor(Vehiculo nuevoVehiculo);
+    void agregarVehiculoConductor(Vehiculo* nuevoVehiculo);
 
     std::string getNombreConductor() const { return nombre; }
 
-    bool tieneLibreta(TipoLibreta tipo) const;
+    bool tieneLibreta(TipoVehiculo tipo) const;
 
     DTUsuarioViaje getDTUsuarioViaje() override;
 

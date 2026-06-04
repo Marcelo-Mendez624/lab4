@@ -10,7 +10,7 @@
 
 
 class Usuario {
-protected:
+private:
     std::string nickname;
     std::string nombre;
     std::string contrasena;

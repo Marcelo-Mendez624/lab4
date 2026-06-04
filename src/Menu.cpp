@@ -176,7 +176,7 @@ void Menu::generarReserva() {
     for (std::set<DTConsultaViaje>::iterator it = col.begin(); it != col.end();++it)
       std::cout << "< Codigo: " << it->getCodigo() << ", Marca: " << it->getMarca() << ", Modelo: " << it->getModelo() << ", Conductor: " << it->getConductor() << ", CalificacionPromedio: " << it->getCalificacionProm() << ", PrecioTotal: " << it->getPrecioTotal() << "\n";
 
-      bool hayViajes = false; // TODO: Validar coleccion vacía
+      bool hayViajes = !col.empty(); // TODO: Validar coleccion vacía (Hecho!!)
     if (!hayViajes) {
         std::cout << "No hay viajes disponibles.\n";
         return;
@@ -186,14 +186,27 @@ void Menu::generarReserva() {
     std::cout << "Ingrese codigo del viaje a reservar: "; std::cin >> codigo;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     bool codigoValido = false;
-    //TODO: Validar codigo en listado
-    if (!codigoValido) {
+    
+    //TODO: Validar codigo en listado (Hecho!!)
+    
+    std::set<DTConsultaViaje>::iterator i = col.begin();
+    while( i !=col.end() && !codigoValido){
+      if (i->getCodigo()==codigo)
+        codigoValido = true;
+        else
+          ++i;
+    }
+
+      if (!codigoValido) {
         std::cout << "Codigo invalido.\n";
         return;
     }
 
     bool reservaOk = false;
-    //TODO: reservaOk = controlador->generarReserva(nickname, codigo, asientos)
+    //TODO: reservaOk = controlador->generarReserva(nickname, codigo, asientos) (Hecho!!)
+
+    reservaOk = controlador->generarReserva(nickname, codigo, asientos);
+
     if (reservaOk) {
         std::cout << "Reserva realizada exitosamente.\n";
     } else {
@@ -202,32 +215,76 @@ void Menu::generarReserva() {
 }
 
 void Menu::calificarUsuario() {
-    //TODO: Coleccion de DTUsuario = controlador->listarUsuarios()
-    //TODO: Recorrer la coleccion y mostrar "> Nickname: xx, Nombre: yyy"
-    std::string nickname;
-    std::cout << "Ingrese su nickname: "; std::getline(std::cin, nickname);
-    bool nicknameValido = false;
-    //TODO: Validar nickname en listado
-    if (!nicknameValido) {
-        std::cout << "Nickname invalido.\n";
-        return;
-    }
+  //Llamo a la fabrica
+  Fabrica *f = Fabrica::getInstance();
+  ICalificarUsuario* controlador = f->getICalificarUsuario();
+  // TODO: Coleccion de DTUsuario = controlador->listarUsuarios() (Hecho!!)
+
+  std::map<std::string, DTUsuario> colDtU = controlador->listarUsuarios();
+
+  // TODO: Recorrer la coleccion y mostrar "> Nickname: xx, Nombre: yyy" (Hecho!!)
+
+  for(std::map<std::string,DTUsuario>
+    ::iterator it = colDtU.begin();it!=colDtU.end();++it)
+    std::cout << "< Nickname: " << (it->second).getNickname() << ", Nombre: " << (it->second).getNombre() << "\n";
+
+  std::string nickname;
+  std::cout << "Ingrese su nickname: ";
+  std::getline(std::cin, nickname);
+  bool nicknameValido = false;
+  // TODO: Validar nickname en listado (Hecho!!)
+
+  if(colDtU.find(nickname)!=colDtU.end())
+    nicknameValido = true;
+
+  if (!nicknameValido)
+  {
+    std::cout << "Nickname invalido.\n";
+    return;
+  }
 
     //TODO: Coleccion de DTListarViaje = controlador->listarViajes(nickname)
-    //TODO: Recorrer la coleccion y mostrar "> Codigo: xx, Fecha: dd/mm/aaaa, Origen: zzz, Destino: www, Conductor: aaa"
+   // (Hecho!!)
+
+  std::vector<DTListarViaje> viajes = controlador->listarViajes(nickname);
+
+  // TODO: Recorrer la coleccion y mostrar "> Codigo: xx, Fecha: dd/mm/aaaa, Origen: zzz, Destino: www, Conductor: aaa" (Hecho!!)
+
+  for (std::vector<DTListarViaje>::iterator it = viajes.begin(); it != viajes.end();++it)
+    std::cout << "> Codigo: " << it->getCodigo() << ", Fecha: " << it->getFecha() << ", Origen: " << it->getOrigen() << ", Destino: " << it->getDestino() << ", Conductor: " << it->getConductor() << "\n";
+
     int codigo;
-    std::cout << "Ingrese codigo del viaje: "; std::cin >> codigo;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    bool codigoValido = false;
-    //TODO: Validar codigo en listado
-    if (!codigoValido) {
-        std::cout << "Codigo invalido.\n";
-        return;
+  std::cout << "Ingrese codigo del viaje: ";
+  std::cin >> codigo;
+  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+  bool codigoValido = false;
+  
+  // TODO: Validar codigo en listado (Hecho!!)
+
+  std::vector<DTListarViaje>::iterator it = viajes.begin();
+  while (it != viajes.end() && !codigoValido){
+    if (it->getCodigo()==codigo)
+      codigoValido = true;
+    it++;
+  }
+
+    if (!codigoValido)
+    {
+      std::cout << "Codigo invalido.\n";
+      return;
     }
 
-    //TODO: Coleccion de DTUsuarioViaje = Controlador->listarUsuariosViaje(codigo)
-    //TODO: Recorrer la coleccion y mostrar "> Nickname: xx, Tipo: yyy"
-    std::string nicknameCalificado;
+    //TODO: Coleccion de DTUsuarioViaje = Controlador->listarUsuariosViaje(codigo) (Hecho!!)
+
+    std::map<std::string, DTUsuarioViaje> coluv = controlador->listarUsuariosViaje(codigo);
+
+    //TODO: Recorrer la coleccion y mostrar "> Nickname: xx, Tipo: yyy" (Hecho!!)
+
+    for (std::map<std::string, DTUsuarioViaje>::iterator it = coluv.begin(); it != coluv.end(); ++it)
+      std::cout << "<Nickname: " << (it->second).getNickname() << ", Tipo: " << (it->second).getTipo() << "\n";
+
+
+      std::string nicknameCalificado;
     int calificacion;
     std::cout << "Ingrese nickname del usuario a calificar: "; std::getline(std::cin, nicknameCalificado);
     std::cout << "Ingrese calificacion (1-5): "; std::cin >> calificacion;

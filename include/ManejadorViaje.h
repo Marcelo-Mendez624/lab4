@@ -15,7 +15,7 @@ public:
     static ManejadorViaje* getInstance();
     std::map<std::string, Viaje*> getViajes();
     Viaje* obtenerViaje(int codigo);
-    Viaje* crearViaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio);
+    Viaje* crearViaje(Vehiculo* v, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio);
     ~ManejadorViaje();
 };
     

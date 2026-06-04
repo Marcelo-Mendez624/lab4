@@ -27,8 +27,8 @@ std::map<std::string, Viaje*> ManejadorViaje::getViajes(){
     return viajes;
 }
 
-Viaje* ManejadorViaje::crearViaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio){
-    Viaje* nuevoViaje = new Viaje(codigo, fecha, origen, destino, asientosPublicados, precio);
+Viaje* ManejadorViaje::crearViaje(Vehiculo* v, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio){
+    Viaje* nuevoViaje = new Viaje(v, fecha, origen, destino, asientosPublicados, precio);
     agregarViaje(nuevoViaje);
     return nuevoViaje;
 }

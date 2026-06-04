@@ -1,7 +1,7 @@
 #include "../include/Viaje.h"
 
 Viaje::Viaje(Vehiculo* v, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio) {
-    this->codigo = obtenerCodigo();
+    this->codigo = obtenerCodigo();     //PREGUNTAR AL PROFE MAÑANA
     this->fecha = fecha;
     this->origen = origen;
     this->destino = destino;

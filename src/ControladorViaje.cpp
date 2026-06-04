@@ -3,6 +3,15 @@
 #include "../include/ManejadorVehiculo.h"
 #include "../include/ManejadorViaje.h"
 
+ControladorViaje* ControladorViaje::instance = nullptr;
+
+ControladorViaje* ControladorViaje::getInstance()
+{
+    if (instance == nullptr)
+        instance = new ControladorViaje;
+    return instance;
+}
+
 std::vector<DTVehiculosConductor> ControladorViaje::listarVehiculosConductor(std::string nickname)
 {
     ManejadorUsuario* m = m->getInstance();

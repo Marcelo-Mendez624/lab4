@@ -23,7 +23,7 @@ Viaje* ManejadorViaje::obtenerViaje(int codigo){
     return nullptr;
 }
 
-std::map<std::string, Viaje*> ManejadorViaje::getViajes(){
+std::map<int, Viaje*> ManejadorViaje::getViajes(){
     return viajes;
 }
 

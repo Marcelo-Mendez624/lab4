@@ -65,16 +65,17 @@ bool ControladorReserva::generarReserva (std::string nickname,int codigo,int asi
 
     int asientosViajes = v->getAsientosPublicados();
 
-    Usuario* p = mu->obtenerUsuario(nickname);
-    
-    bool existeRel = v->relacion(dynamic_cast<class Pasajero*>(p));
+    Usuario* p = mu->obtenerUsuario(nickname); 
+    class Pasajero* pasajero = dynamic_cast<class Pasajero*>(p);
+
+    bool existeRel = v->relacion(pasajero);
 
     if (!existeRel && asientosViajes >= asientos) {
         Reserva* r = new Reserva(asientos, v->getFecha());
 
-        r->asociarReservaPasajero(dynamic_cast<class Pasajero*>(p));
+        r->asociarReservaPasajero(pasajero);
         v->asociarViajeReserva(r);
-        p->asociarPasajeroReserva(r);
+        pasajero->asociarPasajeroReserva(r);
 
         return true;
     }

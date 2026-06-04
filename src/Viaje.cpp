@@ -83,7 +83,7 @@ void Viaje::asociarViajeReserva(Reserva* nr)
     this->reservas.push_back(nr);
 }
 
-std::vector<DTListarViaje> Viaje::crearDTViajes(class Usuario* u)
+std::vector<DTListarViaje> Viaje::crearDTViajes(const class Usuario* u)
 {
     std::vector<DTListarViaje> res;
 
@@ -147,4 +147,23 @@ bool Viaje::coincideCalif(Usuario* u, Usuario* u_calif)
         if (res) break;
     }
     return res;
+}
+
+DTUsuarioViaje Viaje::DTUsuarioViajeCond()
+{
+    return DTUsuarioViaje(veh->getNickConductor(), Conductor);
+}
+
+DTDetalleViaje Viaje::crearDTDetalleViaje()
+{
+    DTDetalleVehiculo dtveh = veh->crearDTDetalleVehiculo();
+    std::vector<DTDetalleReserva> dtreservas;
+
+    for (const auto& r : reservas)
+    {
+        DTDetalleReserva dtr = r->crearDTDetalleReserva();
+        dtreservas.push_back(dtr);
+    }
+
+    return DTDetalleViaje(codigo, fecha, origen, destino, asientosPublicados, precio, dtveh, dtreservas);
 }

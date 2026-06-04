@@ -59,8 +59,7 @@ void Reserva:: crearCalificacion(Usuario* u,Usuario* u_calif,int calificacion){
   u_calif->asociarCalificacion(cal);
 }
 
-
-
-
-
-
+DTDetalleReserva Reserva::crearDTDetalleReserva()
+{
+  return DTDetalleReserva(asientosReservados, fecha, pasajero->getNickname());
+}

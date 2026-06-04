@@ -45,7 +45,7 @@ std::vector<DTListarViaje> ControladorViaje::listarViajes()
     std::vector<DTListarViaje> res;
 
     ManejadorViaje* mv = mv->getInstance();
-    std::map<std::string, Viaje*> viajes = mv->getViajes();
+    std::map<int, Viaje*> viajes = mv->getViajes();
 
     for(const auto& [str, vi] : viajes)
     {

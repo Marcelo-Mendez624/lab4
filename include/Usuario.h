@@ -16,7 +16,6 @@ private:
     std::string contrasena;
     std::string email;
     std::vector<Calificacion*> calificaciones;
-    std::vector<DTListarViaje> viajes; //TODO cuando se cree el controlador quitar
 
 public:
     Usuario(std::string nickname, std::string nombre, std::string contrasena, std::string email);

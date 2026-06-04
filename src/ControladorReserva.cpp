@@ -1,6 +1,7 @@
 #include "ControladorReserva.h"
 #include "ManejadorUsuario.h"
 #include "Usuario.h"
+#include "ManejadorViaje.h"
 
 ControladorReserva* ControladorReserva::instance = nullptr;
 
@@ -13,7 +14,7 @@ ControladorReserva* ControladorReserva::getInstance() {
     return instance;
 }
 
-std::list<std::string> ControladorReserva::listarUsuarios() {
+std::list<std::string> ControladorReserva::listarPasajeros() {
     
     ManejadorUsuario* mu = ManejadorUsuario::getInstance();
     std::map<std::string, Usuario*> us = mu->getUsuarios();
@@ -27,4 +28,56 @@ std::list<std::string> ControladorReserva::listarUsuarios() {
         }
     }
     return res;
+}
+
+
+// Checkear
+std::set<DTConsultaViaje> ControladorReserva::consultarViajes(DTFecha fecha,std::string origen,std::string destino,int asientos) 
+{
+    ManejadorViaje* mv = ManejadorViaje::getInstance();
+    std::map<int, Viaje*> setvi = mv->getViajes();
+    std::set<DTConsultaViaje> dtcv;
+
+    bool check = false, hayLugar = false;
+
+    for (const auto& v : setvi) 
+    {
+        check = v.second->cumpleDatos(fecha, origen, destino);
+        if (check)
+        {
+            hayLugar = v.second->consultarAsientos(asientos);
+            if (hayLugar)
+            {
+                dtcv.insert(v.second->crearDTConsultaViaje());
+            }
+        }
+    }
+
+    return dtcv;
+}
+
+bool ControladorReserva::generarReserva (std::string nickname,int codigo,int asientos) 
+{
+    ManejadorViaje* mv = ManejadorViaje::getInstance();
+    ManejadorUsuario* mu = ManejadorUsuario::getInstance();
+
+    Viaje* v = mv->obtenerViaje(codigo);
+
+    int asientosViajes = v->getAsientosPublicados();
+
+    Usuario* p = mu->obtenerUsuario(nickname);
+    
+    bool existeRel = v->relacion(dynamic_cast<class Pasajero*>(p));
+
+    if (!existeRel && asientosViajes >= asientos) {
+        Reserva* r = new Reserva(asientos, v->getFecha());
+
+        r->asociarReservaPasajero(dynamic_cast<class Pasajero*>(p));
+        v->asociarViajeReserva(r);
+        p->asociarPasajeroReserva(r);
+
+        return true;
+    }
+    
+    return false;
 }

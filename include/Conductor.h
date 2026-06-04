@@ -25,8 +25,6 @@ public:
 
     void agregarVehiculoConductor(Vehiculo* nuevoVehiculo);
 
-    std::string getNombreConductor() const { return nombre; }
-
     bool tieneLibreta(TipoVehiculo tipo) const;
 
     DTUsuarioViaje getDTUsuarioViaje() override;

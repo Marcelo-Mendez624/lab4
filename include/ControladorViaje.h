@@ -7,7 +7,7 @@
 #include "DTUsuarioViaje.h"
 #include <vector>
 
-class ControladorViaje {
+class ControladorViaje : public IAltaViaje, public IEliminarViaje {
 private:
     static ControladorViaje* instance;
     int* codigo = nullptr;
@@ -15,14 +15,14 @@ public:
     static ControladorViaje* getInstance();
 
     //AltaViaje
-    std::vector<DTVehiculosConductor> listarVehiculosConductor(std::string nickname);
-    bool altaViaje(std::string matricula, DTFecha fecha, std::string origen, std::string destino,  int asientos, float precio);
+    std::vector<DTVehiculosConductor> listarVehiculosConductor(std::string nickname) override;
+    bool altaViaje(std::string matricula, DTFecha fecha, std::string origen, std::string destino,  int asientos, float precio) override;
 
     //EliminarViaje
-    std::vector<DTListarViaje> listarViajes();
-    DTDetalleViaje DetalleViaje(int codigo);
-    bool eliminarViaje();
-    void cancelarEliminarViaje();
+    std::vector<DTListarViaje> listarViajes() override;
+    DTDetalleViaje DetalleViaje(int codigo) override;
+    bool eliminarViaje() override;
+    void cancelarEliminarViaje() override;
 };
 
 #endif

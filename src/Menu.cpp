@@ -85,9 +85,12 @@ void Menu::altaViaje() {
 
   // TODO: Recorrer la coleccion y mostrar "> Matricula: xx, Capacidad: yy, Marca: zzz, Modelo: www, Tipo: ttt" Nota de Joaco: Marca y tipo no están en el DTVehiculosConductor
   for (std::vector<DTVehiculosConductor>::iterator it =col.begin(); it != col.end();++it)
-    std::cout << "Matricula: " << it->getMatricula()<< ", Capacidad: " << it->getCapacidad() << ", Modelo: " << it->getModelo() <<"\n";
+     std::cout << "Matricula: " << it->getMatricula()
+              << ", Capacidad: " << it->getCapacidad()
+              << ", Modelo: " << it->getModelo()
+              << "\n";
 
-    std::cout << "Ingrese matricula del vehiculo a utilizar: ";
+  std::cout << "Ingrese matricula del vehiculo a utilizar: ";
   std::getline(std::cin, matricula);
   bool matriculaValida = false;
   // TODO: Validar matricula en listado (Hecho!!)
@@ -290,14 +293,23 @@ void Menu::calificarUsuario() {
     std::cout << "Ingrese calificacion (1-5): "; std::cin >> calificacion;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     bool nicknameCalificadoValido = false;
-    //TODO: Validar nickname en listado
+    //TODO: Validar nickname en listado (Hecho!!)
+
+    if(coluv.find(nickname)!=coluv.end())
+      nicknameCalificadoValido = true;
+
     if (!nicknameCalificadoValido) {
         std::cout << "Nickname invalido.\n";
         return;
     }
 
     bool calificacionOk = false;
-    //TODO: calificacionOk = Controlador->calificarUsuario(nicknameCalificado, calificacion)
+    
+    //TODO: calificacionOk = Controlador->calificarUsuario(nicknameCalificado, calificacion) (Hecho!!)
+
+    calificacionOk = controlador->calificarUsuario(nicknameCalificado, 
+    calificacion);
+    
     if (calificacionOk) {
         std::cout << "Calificacion exitosa.\n";
     } else {
@@ -306,34 +318,97 @@ void Menu::calificarUsuario() {
 }
 
 void Menu::eliminarViaje() {
-    //TODO: Coleccion de DTListarViaje = controlador->listarViajes()
-    //TODO: Recorrer la coleccion y mostrar "> Codigo: xx, Fecha: dd/mm/aaaa, Origen: zzz, Destino: www, Conductor: aaa"
-    int codigo;
-    std::cout << "Ingrese codigo del viaje a eliminar: "; std::cin >> codigo;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    bool codigoValido = false;
-    //TODO: Validar codigo en listado
-    if (!codigoValido) {
-        std::cout << "Codigo invalido.\n";
-        return;
-    }
+  //Llamo a la Fábrica
+  Fabrica *f = Fabrica::getInstance();
+  IEliminarViaje *controlador = f->getIEliminarViaje();
 
-    //TODO: DTDetalleViaje = controlador->detalleViaje(codigo)
-    //TODO: Mostrar detalle del viaje siguiendo el formato
-    //>> Viaje <<
-    //--- Matrícula: aa, Fecha: dd/mm/aaaa, Origen: zzz, Destino: www, Capacidad: bbb, Precio por asiento: qqq
-    //>> Vehiculo <<
-    //--- Matricula: mm, Capacidad: aa, Marca: bbb, Modelo: ccc, Tipo: ddd
-    //>> Reservas <<
-    //--- AsientosReservados: xx, Fecha: dd/mm/aaaa, Pasajero: aaa
-    int confirmar;
-    std::cout << "¿Confirmar eliminacion? (1: Si, 0: No): "; std::cin >> confirmar;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    if (confirmar == 1) {
-        //TODO: controlador->eliminarViaje()
-        std::cout << "Viaje eliminado exitosamente.\n";
-    } else {
-        //TODO: controlador->cancelarEliminarViaje()
+  // TODO: Coleccion de DTListarViaje = controlador->listarViajes() (Hecho!!)
+
+  std::vector<DTListarViaje> colLV = controlador->listarViajes();
+
+  // TODO: Recorrer la coleccion y mostrar "> Codigo: xx, Fecha: dd/mm/aaaa, Origen: zzz, Destino: www, Conductor: aaa" (Hecho)!!
+
+  for (std::vector<DTListarViaje>::iterator it = colLV.begin(); it != colLV.end();++it)
+    std::cout << "> Codigo: " << it->getCodigo() << ", Fecha: " << it->getFecha() << ", Origen: " << it->getOrigen() << ", Destino: " << it->getDestino() << ", Conductor: " << it->getConductor() << "\n";
+
+    int codigo;
+  std::cout << "Ingrese codigo del viaje a eliminar: ";
+  std::cin >> codigo;
+  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+  bool codigoValido = false;
+  
+  // TODO: Validar codigo en listado (Hecho!!)
+
+  std::vector<DTListarViaje>::iterator it = colLV.begin();
+  while (it!=colLV.end() && !codigoValido){
+    if (it->getCodigo()==codigo)
+      codigoValido == true;
+    it++;
+  }
+
+
+  if (!codigoValido)
+  {
+    std::cout << "Codigo invalido.\n";
+    return;
+  }
+
+    //TODO: DTDetalleViaje = controlador->detalleViaje(codigo) (Hecho!!)
+
+  DTDetalleViaje dtDV = controlador->DetalleViaje(codigo);
+
+  // TODO: Mostrar detalle del viaje siguiendo el formato
+  //>> Viaje <<
+  //--- Matrícula: aa, Fecha: dd/mm/aaaa, Origen: zzz, Destino: www, Capacidad: bbb, Precio por asiento: qqq
+  //>> Vehiculo <<
+  //--- Matricula: mm, Capacidad: aa, Marca: bbb, Modelo: ccc, Tipo: ddd
+  //>> Reservas <<
+  //--- AsientosReservados: xx, Fecha: dd/mm/aaaa, Pasajero: aaa
+
+//(Hecho!!) Nota de Joaco: ¿En viaje imprimimos matricula o codigo?
+  //imprimo info del viaje
+  std::cout << ">> Viaje <<" << "\n";
+std::cout << "--- Matricula: " << dtDV.getVehiculo().getMatricula()
+          << ", Fecha: " << dtDV.getFecha()
+          << ", Origen: " << dtDV.getOrigen()
+          << ", Destino: " << dtDV.getDestino()
+          << ", Capacidad: " << dtDV.getAsientosPublicados()
+          << ", Precio por asiento: " << dtDV.getPrecio()
+          << "\n"; 
+
+          //imprimo info del vehiculo
+std::cout << ">> Vehiculo <<" << "\n";
+std::cout << "--- Matricula: " << dtDV.getVehiculo().getMatricula()
+          << ", Capacidad: " << dtDV.getVehiculo().getCapacidad()
+          << ", Marca: " << dtDV.getVehiculo().getMarca()
+          << ", Modelo: " << dtDV.getVehiculo().getModelo()
+          << ", Tipo: " << dtDV.getVehiculo().getTipo()
+          << "\n";
+
+          //imprimo info de las reservas
+std::cout << ">> Reservas <<" << "\n";
+std::vector<DTDetalleReserva> res = dtDV.getReservas();
+for (std::vector<DTDetalleReserva>::iterator it = res.begin(); it != res.end();++it){
+ std::cout << "--- AsientosReservados: " << it->getAsientosReservados()
+           << ", Fecha: " << it->getFecha()
+           << ", Pasajero: " << it->getPasajero()
+           << "\n";
+}
+
+
+  int confirmar;
+std::cout << "¿Confirmar eliminacion? (1: Si, 0: No): ";
+std::cin >> confirmar;
+std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+if (confirmar == 1)
+{
+  // TODO: controlador->eliminarViaje() (Hecho!!)
+  controlador->eliminarViaje();
+
+  std::cout << "Viaje eliminado exitosamente.\n";
+} else {
+        //TODO: controlador->cancelarEliminarViaje() (Hecho)!!
+        controlador->cancelarEliminarViaje();
         std::cout << "Eliminacion cancelada.\n";
     }
 }

@@ -1,4 +1,10 @@
 #include "../include/Usuario.h"
+#include "../include/Usuario.h"
+#include "../include/Calificacion.h"
+#include "../include/Conductor.h"
+#include "../include/Pasajero.h"
+#include "../include/Vehiculo.h"
+#include "../include/ManejadorViaje.h"
 
 Usuario::Usuario(std::string nickname, std::string nombre, std::string contrasena, std::string email) {
     this->nickname = nickname;

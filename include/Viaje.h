@@ -5,6 +5,7 @@
 #include "DTConsultaViaje.h"
 #include "DTListarViaje.h"
 #include "DTUsuarioViaje.h"
+#include "DTDetalleViaje.h"
 #include "Pasajero.h"
 #include "Reserva.h"
 #include "Vehiculo.h"
@@ -55,6 +56,10 @@ public:
     //calificarUsuario
     Reserva* obtenerReservaCalif(Usuario* u, Usuario* u_calif);
     bool coincideCalif(Usuario* u, Usuario* u_calif);
+
+    //EliminarViaje
+    DTUsuarioViaje DTUsuarioViajeCond();
+    DTDetalleViaje crearDTDetalleViaje();
 };
 
 #endif

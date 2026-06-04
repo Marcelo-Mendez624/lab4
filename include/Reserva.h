@@ -7,6 +7,7 @@
 #include "Usuario.h"
 #include "Calificacion.h"
 #include "ControladorFechaActual.h"
+#include "DTDetalleReserva.h"
 #include <list>
 
 class Reserva {
@@ -30,6 +31,7 @@ public:
     class Pasajero* getPasajero();
     bool relacionResPas(class Pasajero* p);
     std::string obtenerNickPasajero();
+    DTDetalleReserva crearDTDetalleReserva();
 };
 
 #endif

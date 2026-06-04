@@ -18,6 +18,10 @@ private:
 public:
     Conductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::set<TipoLibreta> libs);
     ~Conductor();
+    
+    //getters
+    const std::set<TipoLibreta>& getLibretas() const { return libretas; }
+    const std::vector<Vehiculo*>& getVehiculos() const { return vehiculos; }
 
     void agregarVehiculoConductor(Vehiculo* nuevoVehiculo);
 

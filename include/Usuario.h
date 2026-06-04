@@ -10,20 +10,24 @@
 
 
 class Usuario {
-protected:
+private:
     std::string nickname;
     std::string nombre;
     std::string contrasena;
     std::string email;
     std::vector<Calificacion*> calificaciones;
-    std::vector<DTListarViaje> viajes; //TODO cuando se cree el controlador quitar
 
 public:
     Usuario(std::string nickname, std::string nombre, std::string contrasena, std::string email);
     virtual ~Usuario();
 
-    
-    // TODO Revisar include
+    //getters
+    std::string getNickname() const { return this->nickname; }
+    std::string getNombre() const { return this->nombre; }
+    std::string getEmail() const { return this->email; }
+    std::string getContrasena() const { return this->contrasena; }
+    std::vector<Calificacion*> getCalificaciones() const { return this->calificaciones; }
+
     void asociarCalificacion(Calificacion* calificacion);
 
     float getCalificacionPromedio() const;

@@ -58,6 +58,11 @@ DTVehiculosConductor Vehiculo::getDTVehiculoConductor() const {
     return DTVehiculosConductor(matricula, modelo, capacidad);
 }
 
+DTDetalleVehiculo Vehiculo::crearDTDetalleVehiculo()
+{
+    return DTDetalleVehiculo(matricula, capacidad, marca, modelo, tipo);
+}
+
 bool Vehiculo::hayViajesConductor(DTFecha fecha) {
     for (const auto& viaje : viajes) {
         if (viaje->getFecha() == fecha) {

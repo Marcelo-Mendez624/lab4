@@ -38,6 +38,7 @@ public:
     float getCalifConductor() const;
     std::string getNickConductor();
     DTVehiculosConductor getDTVehiculoConductor() const;
+    DTDetalleVehiculo crearDTDetalleVehiculo();
     bool hayViajesConductor(DTFecha fecha);
     bool hayViajesFecha(DTFecha fecha);
     void asociarViaje(Viaje* cvi);

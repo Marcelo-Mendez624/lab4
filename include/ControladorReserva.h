@@ -16,7 +16,7 @@ class ControladorReserva : public IGenerarReserva
 
   public:
     static ControladorReserva *getInstance();
-    std::list<std::string> listarUsuarios() ;
+    std::list<std::string> listarPasajeros() ;
     std::set<DTConsultaViaje> consultarViajes(DTFecha fecha,std::string origen,std::string destino,int asientos);
     bool generarReserva (std::string nickname,int codigo,int asientos) ;
 };

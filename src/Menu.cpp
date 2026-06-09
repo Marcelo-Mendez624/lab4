@@ -357,7 +357,7 @@ void Menu::eliminarViaje() {
 
   DTDetalleViaje dtDV = controlador->DetalleViaje(codigo);
 
-  // TODO: Mostrar detalle del viaje siguiendo el formato
+    // TODO: Mostrar detalle del viaje siguiendo el formato
   //>> Viaje <<
   //--- Matrícula: aa, Fecha: dd/mm/aaaa, Origen: zzz, Destino: www, Capacidad: bbb, Precio por asiento: qqq
   //>> Vehiculo <<

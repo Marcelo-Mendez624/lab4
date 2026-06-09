@@ -10,7 +10,11 @@ private:
     static ManejadorViaje* instancia;
     std::map<int, Viaje*> viajes;
     ManejadorViaje();
+     
 public:
+    static int contadorCodigo;
+
+
     void agregarViaje(Viaje* viaje);
     static ManejadorViaje* getInstance();
     std::map<int, Viaje*> getViajes();

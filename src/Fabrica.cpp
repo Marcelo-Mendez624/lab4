@@ -3,6 +3,7 @@
 #include "../include/ControladorUsuario.h"
 #include "../include/ControladorReserva.h"
 #include "../include/ControladorCalificacion.h"
+#include"../include/ControladorViaje.h"
 
 
 

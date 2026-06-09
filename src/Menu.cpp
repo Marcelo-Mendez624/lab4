@@ -69,7 +69,7 @@ void Menu::altaUsuario() {
           else
           {
             tieneMotoProfesional = true;
-            libretas.insert(TipoLibreta::MotoProfesional);
+            libretas.insert(MotoProfesional);
             cantLibretas++;
           }
         }
@@ -82,7 +82,7 @@ void Menu::altaUsuario() {
           else
           {
             tieneMotoAmateur = true;
-            libretas.insert(TipoLibreta::MotoAmateur);
+            libretas.insert(MotoAmateur);
             cantLibretas++;
           }
         }
@@ -95,7 +95,7 @@ void Menu::altaUsuario() {
           else
           {
             tieneAutoProfesional = true;
-            libretas.insert(TipoLibreta::AutoProfesional);
+            libretas.insert(AutoProfesional);
             cantLibretas++;
           }
         }
@@ -108,7 +108,7 @@ void Menu::altaUsuario() {
           else
           {
             tieneAutoAmateur = true;
-            libretas.insert(TipoLibreta::AutoAmateur);
+            libretas.insert(AutoAmateur);
             cantLibretas++;
           }
         }
@@ -283,9 +283,11 @@ void Menu::generarReserva() {
     //TODO: Recorrer la coleccion y mostrar: "> Codigo: xx, Marca: yy, Modelo: zzz, Conductor: aaa, CalificacionPromedio: qqq, PrecioTotal: eee" (Hecho!!)
 
     for (std::set<DTConsultaViaje>::iterator it = col.begin(); it != col.end();++it)
+    {
       std::cout << "< Codigo: " << it->getCodigo() << ", Marca: " << it->getMarca() << ", Modelo: " << it->getModelo() << ", Conductor: " << it->getConductor() << ", CalificacionPromedio: " << it->getCalificacionProm() << ", PrecioTotal: " << it->getPrecioTotal() << "\n";
+    }
 
-      bool hayViajes = !col.empty(); // TODO: Validar coleccion vacía (Hecho!!)
+    bool hayViajes = !col.empty(); // TODO: Validar coleccion vacía (Hecho!!)
     if (!hayViajes) {
         std::cout << "No hay viajes disponibles.\n";
         return;
@@ -360,7 +362,9 @@ void Menu::calificarUsuario() {
   // TODO: Recorrer la coleccion y mostrar "> Codigo: xx, Fecha: dd/mm/aaaa, Origen: zzz, Destino: www, Conductor: aaa" (Hecho!!)
 
   for (std::vector<DTListarViaje>::iterator it = viajes.begin(); it != viajes.end();++it)
+  {
     std::cout << "> Codigo: " << it->getCodigo() << ", Fecha: " << it->getFecha() << ", Origen: " << it->getOrigen() << ", Destino: " << it->getDestino() << ", Conductor: " << it->getConductor() << "\n";
+  }
 
     int codigo;
   std::cout << "Ingrese codigo del viaje: ";
@@ -390,10 +394,13 @@ void Menu::calificarUsuario() {
     //TODO: Recorrer la coleccion y mostrar "> Nickname: xx, Tipo: yyy" (Hecho!!)
 
     for (std::map<std::string, DTUsuarioViaje>::iterator it = coluv.begin(); it != coluv.end(); ++it)
-      std::cout << "<Nickname: " << (it->second).getNickname() << ", Tipo: " << (it->second).getTipo() << "\n";
+      if ((it->second).getTipo() == TipoUsuario::Pasajero)
+        std::cout << "> Nickname: " << (it->second).getNickname() << ", Tipo: Pasajero\n";
+      else
+        std::cout << "> Nickname: " << (it->second).getNickname() << ", Tipo: Conductor\n";
 
 
-      std::string nicknameCalificado;
+    std::string nicknameCalificado;
     int calificacion;
     std::cout << "Ingrese nickname del usuario a calificar: "; std::getline(std::cin, nicknameCalificado);
     std::cout << "Ingrese calificacion (1-5): "; std::cin >> calificacion;
@@ -435,9 +442,11 @@ void Menu::eliminarViaje() {
   // TODO: Recorrer la coleccion y mostrar "> Codigo: xx, Fecha: dd/mm/aaaa, Origen: zzz, Destino: www, Conductor: aaa" (Hecho)!!
 
   for (std::vector<DTListarViaje>::iterator it = colLV.begin(); it != colLV.end();++it)
+  {
     std::cout << "> Codigo: " << it->getCodigo() << ", Fecha: " << it->getFecha() << ", Origen: " << it->getOrigen() << ", Destino: " << it->getDestino() << ", Conductor: " << it->getConductor() << "\n";
+  }
 
-    int codigo;
+  int codigo;
   std::cout << "Ingrese codigo del viaje a eliminar: ";
   std::cin >> codigo;
   std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -448,7 +457,9 @@ void Menu::eliminarViaje() {
   std::vector<DTListarViaje>::iterator it = colLV.begin();
   while (it!=colLV.end() && !codigoValido){
     if (it->getCodigo()==codigo)
-      codigoValido == true;
+    {
+      codigoValido = true;
+    }
     it++;
   }
 

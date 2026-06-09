@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++98 -Wall -Wextra -I./src
+CXXFLAGS = -Wall -Wextra -I./src
 
 #estructura proyecto
 SRCS = src/main.cpp \

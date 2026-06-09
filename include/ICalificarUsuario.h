@@ -4,6 +4,7 @@
 #include "DTUsuario.h"
 #include "DTConsultaViaje.h"
 #include "DTUsuarioViaje.h"
+#include "DTListarViaje.h"
 #include <string>
 #include <map>
 

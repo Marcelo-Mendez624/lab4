@@ -3,9 +3,8 @@
 
 #include "DTFecha.h"
 #include <set>
-#include "Usuario.h"
-#include "Reserva.h"
 
+class Usuario;
 
 class Calificacion {
 private:
@@ -22,4 +21,3 @@ public:
 };
 
 #endif
-

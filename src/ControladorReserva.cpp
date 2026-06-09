@@ -1,7 +1,7 @@
-#include "ControladorReserva.h"
-#include "ManejadorUsuario.h"
-#include "Usuario.h"
-#include "ManejadorViaje.h"
+#include "../include/ControladorReserva.h"
+#include "../include/ManejadorUsuario.h"
+#include "../include/Usuario.h"
+#include "../include/ManejadorViaje.h"
 
 ControladorReserva* ControladorReserva::instance = nullptr;
 
@@ -48,7 +48,9 @@ std::set<DTConsultaViaje> ControladorReserva::consultarViajes(DTFecha fecha,std:
             hayLugar = v.second->consultarAsientos(asientos);
             if (hayLugar)
             {
-                dtcv.insert(v.second->crearDTConsultaViaje());
+                DTConsultaViaje dt = v.second->crearDTConsultaViaje();
+                dtcv.insert(dt);
+                //dtcv.insert(v.second->crearDTConsultaViaje());
             }
         }
     }

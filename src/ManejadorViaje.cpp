@@ -1,4 +1,4 @@
-#include "ManejadorViaje.h"
+#include "../include/ManejadorViaje.h"
 
 ManejadorViaje* ManejadorViaje::instancia = NULL;
 

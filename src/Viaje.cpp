@@ -83,7 +83,7 @@ void Viaje::asociarViajeReserva(Reserva* nr)
     this->reservas.push_back(nr);
 }
 
-std::vector<DTListarViaje> Viaje::crearDTViajes(const class Usuario* u)
+std::vector<DTListarViaje> Viaje::crearDTViajes(class Usuario* u)
 {
     std::vector<DTListarViaje> res;
 
@@ -109,7 +109,7 @@ std::vector<DTUsuarioViaje> Viaje::obtenerPasajeros(std::string nickname)
     {
         std::string nick = r->obtenerNickPasajero();
         if (nick != nickname)
-            res.push_back(DTUsuarioViaje(nick, Pasajero));
+            res.push_back(DTUsuarioViaje(nick, TipoUsuario::Pasajero));
     }
     return res;
 }
@@ -117,7 +117,7 @@ std::vector<DTUsuarioViaje> Viaje::obtenerPasajeros(std::string nickname)
 DTUsuarioViaje Viaje::obtenerConductor(std::string nickname)
 {
     Vehiculo* ve = getVehiculo();
-    return DTUsuarioViaje(ve->getNickConductor(), Conductor);
+    return DTUsuarioViaje(ve->getNickConductor(), TipoUsuario::Conductor);
 }
 
 Reserva* Viaje::obtenerReservaCalif(Usuario* u, Usuario* u_calif)
@@ -125,12 +125,12 @@ Reserva* Viaje::obtenerReservaCalif(Usuario* u, Usuario* u_calif)
     DTUsuarioViaje dtu = u->getDTUsuarioViaje();
     TipoUsuario tipo = dtu.getTipo();
 
-    if (tipo == Pasajero)
+    if (tipo == TipoUsuario::Pasajero)
         for(const auto& r : reservas)
             if (r->igualUsuario(u))
                 return r;
     
-    else if (tipo == Conductor)
+    else if (tipo == TipoUsuario::Conductor)
         for(const auto& r : reservas)
             if (r->igualUsuario(u_calif))
                 return r;
@@ -151,7 +151,7 @@ bool Viaje::coincideCalif(Usuario* u, Usuario* u_calif)
 
 DTUsuarioViaje Viaje::DTUsuarioViajeCond()
 {
-    return DTUsuarioViaje(veh->getNickConductor(), Conductor);
+    return DTUsuarioViaje(veh->getNickConductor(), TipoUsuario::Conductor);
 }
 
 DTDetalleViaje Viaje::crearDTDetalleViaje()

@@ -38,6 +38,112 @@ void Menu::altaUsuario() {
         //TODO: usuarioOk = controlador->altaPasajero(nickname, nombre, contrasena, email, ci) (HECHO!!)
         usuarioOk = controlador->AltaPasajero(nickname, nombre, contrasena, email, ci);
     } else if (tipoUsuario == 2) {
+      std::set<TipoLibreta> libretas;
+      bool tieneMotoProfesional = false;
+      bool tieneMotoAmateur = false;
+      bool tieneAutoProfesional = false;
+      bool tieneAutoAmateur = false;
+
+      int cantLibretas = 0;
+      int agregarLibreta = 1;
+
+      while (agregarLibreta == 1 && cantLibretas < 4)
+      {
+        int tipoLibreta;
+        std::cout << "\n=== Registrar Libreta ===\n";
+        std::cout << "0. Moto (Profesional)\n";
+        std::cout << "1. Moto (Amateur)\n";
+        std::cout << "2. Auto (Profesional)\n";
+        std::cout << "3. Auto (Amateur)\n";
+        std::cout << "Seleccione el tipo de libreta: ";
+        std::cin >> tipoLibreta;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+        bool yaExiste = false;
+        if (tipoLibreta == 0)
+        {
+          if (tieneMotoProfesional)
+          {
+            yaExiste = true;
+          }
+          else
+          {
+            tieneMotoProfesional = true;
+            libretas.insert(TipoLibreta::MotoProfesional);
+            cantLibretas++;
+          }
+        }
+        else if (tipoLibreta == 1)
+        {
+          if (tieneMotoAmateur)
+          {
+            yaExiste = true;
+          }
+          else
+          {
+            tieneMotoAmateur = true;
+            libretas.insert(TipoLibreta::MotoAmateur);
+            cantLibretas++;
+          }
+        }
+        else if (tipoLibreta == 2)
+        {
+          if (tieneAutoProfesional)
+          {
+            yaExiste = true;
+          }
+          else
+          {
+            tieneAutoProfesional = true;
+            libretas.insert(TipoLibreta::AutoProfesional);
+            cantLibretas++;
+          }
+        }
+        else if (tipoLibreta == 3)
+        {
+          if (tieneAutoAmateur)
+          {
+            yaExiste = true;
+          }
+          else
+          {
+            tieneAutoAmateur = true;
+            libretas.insert(TipoLibreta::AutoAmateur);
+            cantLibretas++;
+          }
+        }
+        else
+        {
+          std::cout << "Opcion invalida.\n";
+          continue;
+        }
+
+        if (yaExiste)
+        {
+          std::cout << "Esa libreta ya fue ingresada.\n";
+        }
+        else
+        {
+          std::cout << "Libreta agregada.\n";
+        }
+
+        if (cantLibretas < 4)
+        {
+          std::cout << "¿Desea agregar otra libreta? (1: Si, 0: No): ";
+          std::cin >> agregarLibreta;
+          std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+        else
+        {
+          std::cout << "Se ha alcanzado el limite maximo de libretas.\n";
+        }
+        }
+
+        if (cantLibretas == 0) {
+            std::cout << "Debe ingresar al menos una libreta para registrar un conductor.\n";
+            return;
+        }
+        
         //TODO: usuarioOk = controlador->altaConductor(nickname, nombre, contrasena, email, libretas)
         usuarioOk = controlador->AltaConductor(nickname, nombre, contrasena, email,libretas);
         int agregarVehiculo = 1;
@@ -359,20 +465,19 @@ void Menu::eliminarViaje() {
 
   // TODO: Mostrar detalle del viaje siguiendo el formato
   //>> Viaje <<
-  //--- Matrícula: aa, Fecha: dd/mm/aaaa, Origen: zzz, Destino: www, Capacidad: bbb, Precio por asiento: qqq
+  //--- Codigo: aa, Fecha: dd/mm/aaaa, Origen: zzz, Destino: www, AsientosPublicados: bbb, Precio por asiento: qqq
   //>> Vehiculo <<
   //--- Matricula: mm, Capacidad: aa, Marca: bbb, Modelo: ccc, Tipo: ddd
   //>> Reservas <<
   //--- AsientosReservados: xx, Fecha: dd/mm/aaaa, Pasajero: aaa
 
-//(Hecho!!) Nota de Joaco: ¿En viaje imprimimos matricula o codigo?
-  //imprimo info del viaje
+//(Hecho!!) 
   std::cout << ">> Viaje <<" << "\n";
-std::cout << "--- Matricula: " << dtDV.getVehiculo().getMatricula()
+std::cout << "--- Codigo: " << dtDV.getCodigo()
           << ", Fecha: " << dtDV.getFecha()
           << ", Origen: " << dtDV.getOrigen()
           << ", Destino: " << dtDV.getDestino()
-          << ", Capacidad: " << dtDV.getAsientosPublicados()
+          << ", AsientosPublicados: " << dtDV.getAsientosPublicados()
           << ", Precio por asiento: " << dtDV.getPrecio()
           << "\n"; 
 

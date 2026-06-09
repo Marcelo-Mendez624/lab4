@@ -4,12 +4,13 @@
 #include "TipoVehiculo.h"
 #include <string>
 #include <vector>
+#include "DTDetalleVehiculo.h"
 #include "DTListarViaje.h"
 #include "DTUsuarioViaje.h"
 #include "DTFecha.h"
 #include "Conductor.h"
-#include "Viaje.h"
 
+class Viaje;
 
 class Vehiculo {
 private:

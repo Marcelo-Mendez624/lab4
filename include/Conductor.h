@@ -3,12 +3,12 @@
 
 #include "Usuario.h"
 #include "TipoLibreta.h"
+#include "TipoVehiculo.h"
 #include <set>
 #include "DTFecha.h"
 #include "DTVehiculosConductor.h"
-#include "Vehiculo.h"
 
-
+class Vehiculo;
 
 class Conductor : public Usuario {
 private:

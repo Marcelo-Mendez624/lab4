@@ -25,7 +25,7 @@ public:
     DTFecha getfecha();
     void asociarReservaPasajero(class Pasajero* p);
     void crearCalificacion(Usuario* u, Usuario* u_calif, int calificacion);
-     std::list<Calificacion*> getCalificaciones();
+    std::list<Calificacion*> getCalificaciones();
     bool existeCal(Usuario* u, Usuario* u_calif);
     bool igualUsuario(Usuario* u);
     class Pasajero* getPasajero();

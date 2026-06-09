@@ -5,6 +5,7 @@
 #include <vector>
 #include "Calificacion.h"
 #include "DTUsuario.h"
+#include "DTUsuarioViaje.h"
 #include "DTListarViaje.h"
 
 
@@ -33,8 +34,6 @@ public:
     float getCalificacionPromedio() const;
 
     DTUsuario getDTUsuario() const;
-
-    std::string getNickname() const;
 
     std::vector<DTListarViaje> getViajes() const; 
 

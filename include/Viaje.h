@@ -35,6 +35,7 @@ public:
     std::string getOrigen() const;
     std::string getDestino() const;
     Vehiculo* getVehiculo() const;
+    int obtenerCodigo();
 
     //consultarViajes
     bool cumpleDatos(DTFecha fecha, std::string origen, std::string destino);
@@ -47,7 +48,7 @@ public:
     void asociarViajeReserva(Reserva* nr);
 
     //listarViajes
-    std::vector<DTListarViaje> crearDTViajes(const class Usuario* u);
+    std::vector<DTListarViaje> crearDTViajes(class Usuario* u);
 
     //listarUsuariosViaje
     std::vector<DTUsuarioViaje> obtenerPasajeros(std::string nickname);

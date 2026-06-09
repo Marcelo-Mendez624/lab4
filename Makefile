@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++98 -Wall -Wextra -I./src
+CXXFLAGS = -Wall -Wextra -I./src
 
 #estructura proyecto
 SRCS = src/main.cpp \
@@ -8,6 +8,9 @@ SRCS = src/main.cpp \
        src/CargaDatos.cpp \
        src/Conductor.cpp \
        src/ControladorFechaActual.cpp \
+       src/ControladorReserva.cpp \
+       src/ControladorUsuario.cpp \
+       src/ControladorViaje.cpp \
        src/DTConsultaViaje.cpp \
        src/DTDetalleReserva.cpp \
        src/DTDetalleVehiculo.cpp \
@@ -18,6 +21,9 @@ SRCS = src/main.cpp \
        src/DTUsuarioViaje.cpp \
        src/DTVehiculosConductor.cpp \
        src/Fabrica.cpp \
+       src/ManejadorUsuario.cpp \
+       src/ManejadorVehiculo.cpp \
+       src/ManejadorViaje.cpp \
        src/Pasajero.cpp \
        src/Reserva.cpp \
        src/Usuario.cpp \

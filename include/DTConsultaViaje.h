@@ -22,6 +22,7 @@ public:
   std::string getConductor()const;
   float getCalificacionProm()const;
   float getPrecioTotal()const;
+  bool operator<(const DTConsultaViaje& otro) const; //agregue esto
 };
 
 #endif

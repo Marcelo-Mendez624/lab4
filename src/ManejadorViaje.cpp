@@ -1,6 +1,7 @@
 #include "../include/ManejadorViaje.h"
 
 ManejadorViaje* ManejadorViaje::instancia = NULL;
+int ManejadorViaje::contadorCodigo = 0;
 
 ManejadorViaje::ManejadorViaje() {
 }

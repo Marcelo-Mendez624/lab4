@@ -61,7 +61,7 @@ DTDetalleViaje ControladorViaje::DetalleViaje(int codigo)
     ManejadorViaje* mv = mv->getInstance();
     Viaje* vi = mv->obtenerViaje(codigo);
 
-    Vehiculo* v = vi->getVehiculo();
+   // Vehiculo* v = vi->getVehiculo();
     DTDetalleViaje res = vi->crearDTDetalleViaje();
     
     this->codigo = new int;
@@ -70,7 +70,7 @@ DTDetalleViaje ControladorViaje::DetalleViaje(int codigo)
     return res;
 }
 
-bool ControladorViaje::eliminarViaje()
+void ControladorViaje::eliminarViaje()
 {
     ManejadorViaje* mv = mv->getInstance();
     Viaje* vi = mv->obtenerViaje(*(this->codigo));

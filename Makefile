@@ -11,6 +11,7 @@ SRCS = src/main.cpp \
        src/ControladorReserva.cpp \
        src/ControladorUsuario.cpp \
        src/ControladorViaje.cpp \
+			 src/ControladorCalificacion.cpp \
        src/DTConsultaViaje.cpp \
        src/DTDetalleReserva.cpp \
        src/DTDetalleVehiculo.cpp \

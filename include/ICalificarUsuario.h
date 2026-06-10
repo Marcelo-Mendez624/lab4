@@ -6,6 +6,7 @@
 #include "DTUsuarioViaje.h"
 #include "DTListarViaje.h"
 #include <string>
+#include <vector>
 #include <map>
 
 class ICalificarUsuario

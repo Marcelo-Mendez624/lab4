@@ -3,6 +3,7 @@
 
 #include <string>
 #include <map>
+#include <vector>
 #include "DTUsuario.h"
 #include "DTConsultaViaje.h"
 #include "DTUsuarioViaje.h"

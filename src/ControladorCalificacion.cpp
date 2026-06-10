@@ -54,7 +54,10 @@ std::map<std::string, DTUsuarioViaje> ControladorCalificacion::listarUsuariosVia
     DTUsuarioViaje oc = vi->obtenerConductor(this->nickname);
 
     std::map<std::string, DTUsuarioViaje> resultado;
-    resultado.insert(op.begin(), op.end());
+    //resultado.insert(op.begin(), op.end());
+    for (const DTUsuarioViaje& dt : op) {
+    resultado.insert({dt.getNickname(), dt});
+}
     resultado.insert({oc.getNickname(), oc});
 
     return resultado;

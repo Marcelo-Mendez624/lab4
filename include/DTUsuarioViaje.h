@@ -12,7 +12,7 @@ private:
 public:
     DTUsuarioViaje(std::string nickname, TipoUsuario tipo);
 
-    std::string getNickname();
+    std::string getNickname ()const;
     TipoUsuario getTipo();
 };
 

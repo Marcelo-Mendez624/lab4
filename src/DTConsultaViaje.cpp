@@ -15,3 +15,6 @@ std::string DTConsultaViaje::getModelo() const { return modelo; }
 std::string DTConsultaViaje::getConductor()const { return conductor; }
 float DTConsultaViaje::getCalificacionProm()const { return calificacionProm; }
 float DTConsultaViaje::getPrecioTotal() const { return precioTotal; }
+bool DTConsultaViaje::operator<(const DTConsultaViaje& otro) const {
+    return codigo < otro.codigo;
+} //agregue esto

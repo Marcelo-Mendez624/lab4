@@ -1,7 +1,8 @@
 #ifndef IAltaViaje_H
 #define IAltaViaje_H
 #include "DTVehiculosConductor.h"
-
+#include <vector>
+#include "DTFecha.h"
 class IAltaViaje
 {
 public:

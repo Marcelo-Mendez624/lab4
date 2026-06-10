@@ -29,7 +29,7 @@ std::string Reserva:: obtenerNickPasajero(){
   return p->getNickname();
 }
 
-bool Reserva:: igualUsuario (Usuario* u){
+bool Reserva:: igualUsuario (const Usuario* u){
     return this->obtenerNickPasajero()==u->getNickname();
 }
 
@@ -62,4 +62,8 @@ void Reserva:: crearCalificacion(Usuario* u,Usuario* u_calif,int calificacion){
 DTDetalleReserva Reserva::crearDTDetalleReserva()
 {
   return DTDetalleReserva(asientosReservados, fecha, pasajero->getNickname());
+}
+
+bool Reserva:: relacionResPas(class Pasajero* p){
+  return p->getNickname() == this->pasajero->getNickname();
 }

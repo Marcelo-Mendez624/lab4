@@ -27,7 +27,7 @@ public:
     void crearCalificacion(Usuario* u, Usuario* u_calif, int calificacion);
     std::list<Calificacion*> getCalificaciones();
     bool existeCal(Usuario* u, Usuario* u_calif);
-    bool igualUsuario(Usuario* u);
+    bool igualUsuario(const Usuario* u);
     class Pasajero* getPasajero();
     bool relacionResPas(class Pasajero* p);
     std::string obtenerNickPasajero();

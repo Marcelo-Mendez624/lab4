@@ -12,7 +12,7 @@ public:
 
   virtual std::vector<DTListarViaje> listarViajes() = 0;
   virtual DTDetalleViaje DetalleViaje(int codigo) = 0;
-  virtual bool eliminarViaje () = 0;
+  virtual void eliminarViaje () = 0;
   virtual void cancelarEliminarViaje() = 0;
 
 };

@@ -1,8 +1,14 @@
 #include "../include/ManejadorUsuario.h"
 
+ManejadorUsuario* ManejadorUsuario::instancia = nullptr;
+
+
+ManejadorUsuario::ManejadorUsuario() {
+}
+
 ManejadorUsuario *ManejadorUsuario::getInstance()
 {
-  if (instancia=NULL){
+  if (instancia==nullptr){
     instancia = new ManejadorUsuario();
   }
     return instancia;

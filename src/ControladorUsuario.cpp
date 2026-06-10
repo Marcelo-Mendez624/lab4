@@ -2,6 +2,8 @@
 #include "../include/ManejadorUsuario.h"
 #include "../include/ManejadorVehiculo.h"
 
+ControladorUsuario* ControladorUsuario::instancia = nullptr;
+
 ControladorUsuario::ControladorUsuario() 
 {
     
@@ -12,14 +14,11 @@ ControladorUsuario* ControladorUsuario:: getInstance(){
   return instancia;
 }
 
-ControladorUsuario::~ControladorUsuario() 
-{
-    
-}
+
 
 bool ControladorUsuario::AltaPasajero(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::string ci) 
 {
-  ManejadorUsuario* m = m->getInstance();
+  ManejadorUsuario* m = ManejadorUsuario::getInstance();
   
   if (m->existeUsuario(nickname)) return false;
 
@@ -29,7 +28,7 @@ bool ControladorUsuario::AltaPasajero(std::string nickname, std::string nombre, 
 
 bool ControladorUsuario::AltaConductor(std::string nickname, std::string nombre, std::string contrasena, std::string email, std::set<TipoLibreta> libretas) 
 {
-  ManejadorUsuario* m = m->getInstance();
+  ManejadorUsuario* m = ManejadorUsuario::getInstance();
   
   if (m->existeUsuario(nickname)) return false;
 
@@ -39,8 +38,8 @@ bool ControladorUsuario::AltaConductor(std::string nickname, std::string nombre,
 
 int ControladorUsuario::registrarVehiculo(std::string nickname, std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo) 
 {
-  ManejadorVehiculo* mv = mv->getInstance();
-  ManejadorUsuario* mu = mu->getInstance();
+  ManejadorVehiculo* mv = ManejadorVehiculo::getInstance();
+  ManejadorUsuario* mu = ManejadorUsuario::getInstance();
   if (mv->existeVeh(matricula)) return -1;
 
   Usuario* u = mu->obtenerUsuario(nickname);

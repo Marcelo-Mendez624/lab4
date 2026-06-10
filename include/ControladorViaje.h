@@ -21,7 +21,7 @@ public:
     //EliminarViaje
     std::vector<DTListarViaje> listarViajes() override;
     DTDetalleViaje DetalleViaje(int codigo) override;
-    bool eliminarViaje() override;
+    void eliminarViaje() override;
     void cancelarEliminarViaje() override;
 };
 

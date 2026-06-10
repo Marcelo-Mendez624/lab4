@@ -64,8 +64,7 @@ DTDetalleViaje ControladorViaje::DetalleViaje(int codigo)
    // Vehiculo* v = vi->getVehiculo();
     DTDetalleViaje res = vi->crearDTDetalleViaje();
     
-    this->codigo = new int;
-    *(this->codigo) = codigo;
+    this->codigo = codigo;
 
     return res;
 }
@@ -73,12 +72,36 @@ DTDetalleViaje ControladorViaje::DetalleViaje(int codigo)
 void ControladorViaje::eliminarViaje()
 {
     ManejadorViaje* mv = mv->getInstance();
-    Viaje* vi = mv->obtenerViaje(*(this->codigo));
+    Viaje* vi = mv->obtenerViaje(codigo);
+    Vehiculo* ve = vi->getVehiculo();
 
+    //Eliminar link vehículo <-> viaje
+    ve->eliminarLinkViaje(codigo);
+    vi->eliminarLinkVehiculo();
+
+    std::vector<Reserva*> reservas = vi->getReservas();
+
+    while (!reservas.empty())
+    {
+        Reserva* r = reservas.back();
+
+        //Eliminar link reserva -> calificacion <-> usuario (+ eliminar instancia de calificacion)
+        r->eliminarCalificaciones();
+        Pasajero* p = r->getPasajero();
+
+        //Eliminar reserva <-> pasajero
+        r->eliminarLinkPasajero();
+        p->eliminarLinkReserva(r); //TODO para marce (jodete por hacer bidireccionalidad)
+        reservas.pop_back();
+
+        //Eliminar instancia de reserva
+        delete r;
+    }
+
+    //Eliminar instancia de viaje
+    mv->eliminarViaje(vi);
 }
 
 void ControladorViaje::cancelarEliminarViaje()
 {
-    delete this->codigo;
-    this->codigo = nullptr;
 }

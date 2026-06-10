@@ -39,6 +39,7 @@ public:
 
     virtual DTUsuarioViaje getDTUsuarioViaje() = 0;  //polimórfica
     
+    void eliminarLinkCalificacion(Calificacion* c);
 };
 
 #endif

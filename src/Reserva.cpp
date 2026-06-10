@@ -67,3 +67,19 @@ DTDetalleReserva Reserva::crearDTDetalleReserva()
 bool Reserva:: relacionResPas(class Pasajero* p){
   return p->getNickname() == this->pasajero->getNickname();
 }
+
+void Reserva::eliminarCalificaciones()
+{
+  std::list<Calificacion*> calificaciones = getCalificaciones();
+  for (const auto& c : calificaciones)
+  {
+    c->eliminarLinks();
+    calificaciones.remove(c);
+    delete c;
+  }
+}
+
+void Reserva::eliminarLinkPasajero()
+{
+  pasajero = nullptr;
+}

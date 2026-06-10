@@ -168,3 +168,8 @@ DTDetalleViaje Viaje::crearDTDetalleViaje()
 
     return DTDetalleViaje(codigo, fecha, origen, destino, asientosPublicados, precio, dtveh, dtreservas);
 }
+
+void Viaje::eliminarLinkVehiculo()
+{
+    veh = NULL;
+}

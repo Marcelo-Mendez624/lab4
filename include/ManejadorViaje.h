@@ -21,6 +21,8 @@ public:
     Viaje* obtenerViaje(int codigo);
     Viaje* crearViaje(Vehiculo* v, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio);
     ~ManejadorViaje();
+
+    void eliminarViaje(Viaje* vi);
 };
     
 #endif

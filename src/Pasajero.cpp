@@ -17,3 +17,8 @@ void Pasajero::asociarPasajeroReserva(Reserva* r)
 {
     reservas.push_back(r);
 }
+
+void Pasajero::eliminarLinkReserva(Reserva* r)
+{
+    
+}

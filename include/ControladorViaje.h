@@ -10,7 +10,7 @@
 class ControladorViaje : public IAltaViaje, public IEliminarViaje {
 private:
     static ControladorViaje* instance;
-    int* codigo = nullptr;
+    int codigo;
 public:
     static ControladorViaje* getInstance();
 

@@ -32,6 +32,8 @@ public:
     bool relacionResPas(class Pasajero* p);
     std::string obtenerNickPasajero();
     DTDetalleReserva crearDTDetalleReserva();
+    void eliminarCalificaciones();
+    void eliminarLinkPasajero();
 };
 
 #endif

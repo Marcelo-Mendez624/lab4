@@ -54,3 +54,11 @@ std::vector<DTListarViaje> Usuario::getViajes() const {
     return viajes;
     
 }
+
+void Usuario::eliminarLinkCalificacion(Calificacion* c)
+{
+    std::vector<Calificacion*>::iterator it = calificaciones.begin();
+    while ((*it) != c)
+        it++;
+    calificaciones.erase(it);
+}

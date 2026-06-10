@@ -19,6 +19,7 @@ public:
     std::string getCi();
     DTUsuarioViaje getDTUsuarioViaje() override;
     void asociarPasajeroReserva(Reserva* r);
+    void eliminarLinkReserva(Reserva* r);
 };
 
 #endif

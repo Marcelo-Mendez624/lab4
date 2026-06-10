@@ -36,6 +36,7 @@ public:
     std::string getDestino() const;
     Vehiculo* getVehiculo() const;
     int obtenerCodigo();
+    std::vector<Reserva*> getReservas();
 
     //consultarViajes
     bool cumpleDatos(DTFecha fecha, std::string origen, std::string destino);
@@ -61,6 +62,8 @@ public:
     //EliminarViaje
     DTUsuarioViaje DTUsuarioViajeCond();
     DTDetalleViaje crearDTDetalleViaje();
+
+    void eliminarLinkVehiculo();
 };
 
 #endif

@@ -33,3 +33,9 @@ Viaje* ManejadorViaje::crearViaje(Vehiculo* v, DTFecha fecha, std::string origen
     agregarViaje(nuevoViaje);
     return nuevoViaje;
 }
+
+void ManejadorViaje::eliminarViaje(Viaje* vi)
+{
+    viajes.erase(vi->getCodigo());
+    delete vi;
+}

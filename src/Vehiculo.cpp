@@ -31,11 +31,11 @@ TipoVehiculo Vehiculo::getTipo() const{
     return this->tipo;
 } 
 
-std::vector<Viaje*> Vehiculo::getViajes() const { return this->viajes; }
+std::map<int, Viaje*> Vehiculo::getViajes() const { return this->viajes; }
 
 std::vector<DTListarViaje> Vehiculo::listarViajes() {
     std::vector<DTListarViaje> resultado;
-    for (const auto& viaje : viajes) {
+    for (const auto& [id, viaje] : viajes) {
         // Crear un objeto DTListarViajes para cada viaje y agregarlo al vector
         DTListarViaje DTListarViaje(viaje->getCodigo(), viaje->getFecha(), viaje->getOrigen(), viaje->getDestino(), conductor->getNickname());
         resultado.push_back(DTListarViaje);
@@ -65,7 +65,7 @@ DTDetalleVehiculo Vehiculo::crearDTDetalleVehiculo()
 }
 
 bool Vehiculo::hayViajesConductor(DTFecha fecha) {
-    for (const auto& viaje : viajes) {
+    for (const auto& [id, viaje] : viajes) {
         if (viaje->getFecha() == fecha) {
             return true;
         }
@@ -74,7 +74,7 @@ bool Vehiculo::hayViajesConductor(DTFecha fecha) {
 }
 
 bool Vehiculo::hayViajesFecha(DTFecha fecha) {
-    for (const auto& viaje : viajes) {
+    for (const auto& [id, viaje] : viajes) {
         if (viaje->getFecha() == fecha) {
             return true;
         }
@@ -83,6 +83,10 @@ bool Vehiculo::hayViajesFecha(DTFecha fecha) {
 }
 
 void Vehiculo::asociarViaje(Viaje* cvi) {
-    viajes.push_back(cvi);
+    viajes[cvi->getCodigo()] = cvi;
 }
- 
+
+void Vehiculo::eliminarLinkViaje(int codigo)
+{
+    viajes.erase(codigo);
+}

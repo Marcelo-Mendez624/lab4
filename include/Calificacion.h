@@ -18,6 +18,9 @@ public:
     int getPuntaje() const { return puntaje; }
     bool coicidenUsuario( Usuario* u, Usuario* u_calif);
     void linkearCalifUsuario(Usuario* u, Usuario* u_calif);
+    void eliminarLinks();
+
+    bool operator==(Calificacion other);
 };
 
 #endif

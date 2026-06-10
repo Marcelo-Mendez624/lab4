@@ -20,5 +20,12 @@ void Pasajero::asociarPasajeroReserva(Reserva* r)
 
 void Pasajero::eliminarLinkReserva(Reserva* r)
 {
-    
+    for (auto it = reservas.begin(); it != reservas.end(); ++it) 
+    {
+        if (*it == r) 
+        {
+            reservas.erase(it);
+            break; 
+        }
+    }
 }

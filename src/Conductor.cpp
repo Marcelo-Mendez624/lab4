@@ -55,7 +55,7 @@ bool Conductor::hayViajesFechaConductor(DTFecha fecha) const
 {
     for (const auto& ve : vehiculos)
     {
-        for (const auto& vi : ve->getViajes())
+        for (const auto& [id, vi] : ve->getViajes())
         {
             if (vi->getFecha() == fecha) 
                 return true;

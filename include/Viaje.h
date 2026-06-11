@@ -53,7 +53,7 @@ public:
 
     //listarUsuariosViaje
     std::vector<DTUsuarioViaje> obtenerPasajeros(std::string nickname);
-    DTUsuarioViaje obtenerConductor(std::string nickname);
+    DTUsuarioViaje obtenerConductor();
 
     //calificarUsuario
     Reserva* obtenerReservaCalif(Usuario* u, Usuario* u_calif);

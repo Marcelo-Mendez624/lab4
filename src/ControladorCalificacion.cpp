@@ -51,14 +51,16 @@ std::map<std::string, DTUsuarioViaje> ControladorCalificacion::listarUsuariosVia
     Viaje* vi =  mv->obtenerViaje(codigo);
 
     std::vector<DTUsuarioViaje> op = vi->obtenerPasajeros(this->nickname);
-    DTUsuarioViaje oc = vi->obtenerConductor(this->nickname);
+    DTUsuarioViaje oc = vi->obtenerConductor();
 
     std::map<std::string, DTUsuarioViaje> resultado;
     //resultado.insert(op.begin(), op.end());
     for (const DTUsuarioViaje& dt : op) {
     resultado.insert({dt.getNickname(), dt});
-}
-    resultado.insert({oc.getNickname(), oc});
+    }
+    
+    if (oc.getNickname() != nickname)
+        resultado.insert({oc.getNickname(), oc});
 
     return resultado;
 }

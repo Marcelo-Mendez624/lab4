@@ -1,6 +1,6 @@
 #include "../include/ManejadorVehiculo.h"
 
-ManejadorVehiculo* ManejadorVehiculo::inst = NULL;
+ManejadorVehiculo* ManejadorVehiculo::inst = nullptr;
 
 ManejadorVehiculo::ManejadorVehiculo()
 {   
@@ -8,7 +8,7 @@ ManejadorVehiculo::ManejadorVehiculo()
 
 ManejadorVehiculo* ManejadorVehiculo::getInstance()
 {
-    if (inst == NULL)
+    if (inst == nullptr)
         inst = new ManejadorVehiculo;
     return inst;
 }
@@ -23,21 +23,15 @@ bool ManejadorVehiculo::existeVeh(std::string matricula)
 
 Vehiculo* ManejadorVehiculo::obtenerVeh(std::string matricula)
 {
-    Vehiculo* res = nullptr;
-    std::vector<Vehiculo*>::iterator v;
-    
-    while (res != nullptr)
+    std::vector<Vehiculo*> setVeh = this->vehiculos;
+    for(const auto& v : setVeh)
     {
-        if ((*v)->getMatricula() == matricula) res = *v;
+        printf("ENTRÉ AL FOR DE OBTENERVEH\n");
+    
+        if (v->getMatricula() == matricula)
+            return v;
     }
-
-    return res;
-    //for(const auto& v : vehiculos)
-    //    if (v->getMatricula() == matricula)
-    //    {
-    //        res = v;
-    //        
-    //    }
+    return nullptr;
 }
 
 Vehiculo* ManejadorVehiculo::nuevoVehiculo(std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo)

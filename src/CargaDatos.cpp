@@ -1,5 +1,5 @@
 #include "../include/CargaDatos.h"
-#include "Fabrica.cpp"
+#include "../include/Fabrica.h"
 #include <iostream>
 
 CargaDatos* CargaDatos::instancia = nullptr;
@@ -20,7 +20,7 @@ void CargaDatos::cargarDatos() {
         std::cout << "Error: Los datos ya han sido cargados anteriormente.\n";
         return;
     }
-    
+
     // Aquí iría la lógica de carga de datos harcodeados
     std::cout << "Cargando datos harcodeados del sistema...\n";
     // TODO hacer pruebas aqui
@@ -60,21 +60,31 @@ void CargaDatos::cargarDatos() {
     altaUsuario->registrarVehiculo("carlos_r", "SBJ4874", 4, "Volkswagen", "Gol", TipoVehiculo::Auto);
     altaUsuario->registrarVehiculo("carlos_r", "SCF2469", 1, "Yamaha", "FZ S", TipoVehiculo::Moto);
 
+    std::cout << "###REGISTRAR VEHICULO SUCCESS###\n";
+    std::cout << "###REGISTRAR VEHICULO SUCCESS###\n";
+    std::cout << "###REGISTRAR VEHICULO SUCCESS###\n";
 
     IAltaViaje *altaViaje = f->getIAltaViaje();
+    
     altaViaje->altaViaje("ABJ4586", DTFecha(21, 10, 2026), "montevideo", "mercedes", 4, 200);
-    altaViaje->altaViaje("ACM4455", DTFecha(20, 10, 2026), "young", "montevideo", 5, 250);
-    altaViaje->altaViaje("BAS7895", DTFecha(20, 10, 2026), "young", "montevideo", 4, 200);
-    altaViaje->altaViaje("BCS4105", DTFecha(21, 10, 2026), "montevideo", "mercedes", 9, 200);
-    altaViaje->altaViaje("LDA4875", DTFecha(21, 10, 2026), "montevideo", "mercedes", 1, 300);
-    altaViaje->altaViaje("PDB1205", DTFecha(21, 10, 2026), "montevideo", "mercedes", 1, 350);
-    altaViaje->altaViaje("SBJ4874", DTFecha(21, 10, 2026), "montevideo", "mercedes", 4, 260);
-    altaViaje->altaViaje("SCF2469", DTFecha(20, 10, 2026), "montevideo", "cerro chato", 1, 150);
-    altaViaje->altaViaje("ABJ4586", DTFecha(15, 3, 2026), "montevideo", "colonia", 4, 140);
-    altaViaje->altaViaje("BCS4105", DTFecha(15, 3, 2026), "montevideo", "colonia", 9, 180);
-    altaViaje->altaViaje("SBJ4874", DTFecha(15, 3, 2026), "montevideo", "colonia", 1, 100);
-    altaViaje->altaViaje("SBJ4874", DTFecha(14, 3, 2026), "montevideo", "colonia", 4, 600);
-    altaViaje->altaViaje("LDA4875", DTFecha(20, 10, 2026), "young", "montevideo", 1, 250);
+    //aux = altaViaje->altaViaje("ACM4455", DTFecha(20, 10, 2026), "young", "montevideo", 5, 250);
+    //aux = altaViaje->altaViaje("BAS7895", DTFecha(20, 10, 2026), "young", "montevideo", 4, 200);
+    //aux = altaViaje->altaViaje("BCS4105", DTFecha(21, 10, 2026), "montevideo", "mercedes", 9, 200);
+    //aux = altaViaje->altaViaje("LDA4875", DTFecha(21, 10, 2026), "montevideo", "mercedes", 1, 300);
+    //aux = altaViaje->altaViaje("PDB1205", DTFecha(21, 10, 2026), "montevideo", "mercedes", 1, 350);
+    //aux = altaViaje->altaViaje("SBJ4874", DTFecha(21, 10, 2026), "montevideo", "mercedes", 4, 260);
+    //aux = altaViaje->altaViaje("SCF2469", DTFecha(20, 10, 2026), "montevideo", "cerro chato", 1, 150);
+    //aux = altaViaje->altaViaje("ABJ4586", DTFecha(15, 3, 2026), "montevideo", "colonia", 4, 140);
+    //aux = altaViaje->altaViaje("BCS4105", DTFecha(15, 3, 2026), "montevideo", "colonia", 9, 180);
+    //aux = altaViaje->altaViaje("SBJ4874", DTFecha(15, 3, 2026), "montevideo", "colonia", 1, 100);
+    //aux = altaViaje->altaViaje("SBJ4874", DTFecha(14, 3, 2026), "montevideo", "colonia", 4, 600);
+    //aux = altaViaje->altaViaje("LDA4875", DTFecha(20, 10, 2026), "young", "montevideo", 1, 250);
+
+    std::cout << "###ALTA VIAJE SUCCESS###\n";
+
+    std::cout << "###ALTA VIAJE SUCCESS###\n";
+
+    std::cout << "###ALTA VIAJE SUCCESS###\n";
 
     IGenerarReserva* gr = f->getIGenerarReserva();
     IControladorFechaActual* fa = f->getIControladorFechaActual();

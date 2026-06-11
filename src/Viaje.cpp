@@ -27,6 +27,10 @@ std::string Viaje::getDestino() const { return this->destino; }
 
 Vehiculo* Viaje::getVehiculo() const { return this->veh; }
 
+std::vector<Reserva*> Viaje::getReservas(){
+  return this->reservas;
+}
+
 bool Viaje::cumpleDatos(DTFecha fecha, std::string origen, std::string destino)
 {
     bool cond1 = fecha == this->fecha;

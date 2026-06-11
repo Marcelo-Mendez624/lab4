@@ -30,7 +30,7 @@ bool Conductor::tieneLibreta(TipoVehiculo tipo) const
         lib1 = libretas.find(MotoAmateur);
         lib2 = libretas.find(MotoProfesional);
     }
-    return (lib1 != libretas.end() && lib2 != libretas.end());
+    return (lib1 != libretas.end() || lib2 != libretas.end());
 }
 
 DTUsuarioViaje Conductor::getDTUsuarioViaje()

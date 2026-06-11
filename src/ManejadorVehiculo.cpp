@@ -23,11 +23,8 @@ bool ManejadorVehiculo::existeVeh(std::string matricula)
 
 Vehiculo* ManejadorVehiculo::obtenerVeh(std::string matricula)
 {
-    std::vector<Vehiculo*> setVeh = this->vehiculos;
-    for(const auto& v : setVeh)
+    for(const auto& v : vehiculos)
     {
-        printf("ENTRÉ AL FOR DE OBTENERVEH\n");
-    
         if (v->getMatricula() == matricula)
             return v;
     }
@@ -38,6 +35,6 @@ Vehiculo* ManejadorVehiculo::nuevoVehiculo(std::string matricula, int capacidad,
 {
     Vehiculo* res = new Vehiculo(matricula, capacidad, marca, modelo, tipo);
     vehiculos.push_back(res);
-
+    
     return res;
 }

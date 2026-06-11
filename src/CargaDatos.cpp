@@ -110,6 +110,7 @@ void CargaDatos::cargarDatos() {
     std::cout << "###GENERAR RESERVA SUCCESS###\n";
 
     ICalificarUsuario* calificarUsuario = f->getICalificarUsuario();
+
     calificarUsuario->listarViajes("santi_90");
     calificarUsuario->listarUsuariosViaje(9);
     calificarUsuario->calificarUsuario("matil92",4);

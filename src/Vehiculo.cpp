@@ -1,5 +1,6 @@
 #include "../include/Vehiculo.h"
 #include "../include/Viaje.h"
+#include "../include/Vehiculo.h"
 
 Vehiculo::Vehiculo(std::string matricula, int capacidad, std::string marca, std::string modelo, TipoVehiculo tipo) {
     this->matricula = matricula;
@@ -84,6 +85,11 @@ bool Vehiculo::hayViajesFecha(DTFecha fecha) {
 
 void Vehiculo::asociarViaje(Viaje* cvi) {
     viajes[cvi->getCodigo()] = cvi;
+}
+
+void Vehiculo::asociarConductor(Conductor *c)
+{
+    this->conductor = c;
 }
 
 void Vehiculo::eliminarLinkViaje(int codigo)

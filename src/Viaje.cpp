@@ -1,5 +1,6 @@
 #include "../include/Viaje.h"
 #include "../include/ManejadorViaje.h"
+#include "../include/Viaje.h"
 
 Viaje::Viaje(Vehiculo* v, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio) {
     this->codigo = ManejadorViaje::contadorCodigo++;     
@@ -88,6 +89,11 @@ void Viaje::asociarViajeReserva(Reserva* nr)
     this->reservas.push_back(nr);
 }
 
+void Viaje::asociarViajeVeh(Vehiculo *veh)
+{
+    this->veh = veh;
+}
+
 std::vector<DTListarViaje> Viaje::crearDTViajes( const Usuario* u)
 {
     std::vector<DTListarViaje> res;
@@ -98,13 +104,15 @@ std::vector<DTListarViaje> Viaje::crearDTViajes( const Usuario* u)
 
         if (iguales)
         {
+            std::cout << "a";
             DTListarViaje dt = DTListarViaje(this->getCodigo(), this->getFecha(), this->getOrigen(), this->getDestino(), veh->getConductor());
+            std::cout << "b";
+
             res.push_back(dt);
         }
     }
     return res;
 }
-
 
 std::vector<DTUsuarioViaje> Viaje::obtenerPasajeros(std::string nickname) 
 {

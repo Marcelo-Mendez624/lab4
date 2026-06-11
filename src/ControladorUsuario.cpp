@@ -48,5 +48,7 @@ int ControladorUsuario::registrarVehiculo(std::string nickname, std::string matr
   
   Vehiculo* nv = mv->nuevoVehiculo(matricula, capacidad, marca, modelo, tipo);
   c->agregarVehiculoConductor(nv);
+  nv->asociarConductor(c);
+
   return 0;
 }

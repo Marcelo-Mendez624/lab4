@@ -47,6 +47,7 @@ public:
     bool relacion(class Pasajero* p);
     int totalAsientosRes();
     void asociarViajeReserva(Reserva* nr);
+    void asociarViajeVeh(Vehiculo* veh);
 
     //listarViajes
     std::vector<DTListarViaje> crearDTViajes(const Usuario* u);

@@ -36,6 +36,7 @@ bool ControladorViaje::altaViaje(std::string matricula, DTFecha fecha, std::stri
     ManejadorViaje* mvi = mvi->getInstance();
     Viaje* vi = mvi->crearViaje(v, fecha, origen, destino, asientos, precio);
     v->asociarViaje(vi);
+    vi->asociarViajeVeh(v);
 
     return true;
 }

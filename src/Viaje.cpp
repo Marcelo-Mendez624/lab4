@@ -1,9 +1,8 @@
 #include "../include/Viaje.h"
 #include "../include/ManejadorViaje.h"
-#include "../include/Viaje.h"
 
 Viaje::Viaje(Vehiculo* v, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio) {
-    this->codigo = ManejadorViaje::contadorCodigo++;     
+    this->codigo = ManejadorViaje::contadorCodigo++;    
     this->fecha = fecha;
     this->origen = origen;
     this->destino = destino;
@@ -12,7 +11,7 @@ Viaje::Viaje(Vehiculo* v, DTFecha fecha, std::string origen, std::string destino
     this->veh = v;
 }
 
-Viaje::~Viaje() {};
+Viaje::~Viaje() {}
 
 float Viaje::getPrecio() const { return this->precio; }
 
@@ -28,98 +27,55 @@ std::string Viaje::getDestino() const { return this->destino; }
 
 Vehiculo* Viaje::getVehiculo() const { return this->veh; }
 
-std::vector<Reserva*> Viaje::getReservas(){
-  return this->reservas;
+std::vector<Reserva*> Viaje::getReservas() { return this->reservas; }
+
+bool Viaje::cumpleDatos(DTFecha fecha, std::string origen, std::string destino) {
+    return (fecha == this->fecha && origen == this->origen && destino == this->destino);
 }
 
-bool Viaje::cumpleDatos(DTFecha fecha, std::string origen, std::string destino)
-{
-    bool cond1 = fecha == this->fecha;
-    bool cond2 = origen == this->origen;
-    bool cond3 = destino == this->destino;
-
-    return cond1 && cond2 && cond3;
+bool Viaje::consultarAsientos(int asientos) {
+    return (totalAsientosRes() + asientos) <= this->asientosPublicados;
 }
 
-bool Viaje::consultarAsientos(int asientos)
-{
-    int reservados = totalAsientosRes();
-    return (reservados + asientos) <= this->asientosPublicados;
+DTConsultaViaje Viaje::crearDTConsultaViaje() {
+    return DTConsultaViaje(this->codigo, veh->getMarca(), veh->getModelo(), veh->getConductor(), veh->getCalifConductor(), this->precio);
 }
 
-DTConsultaViaje Viaje::crearDTConsultaViaje()
-{
-
-    int codigo = this->getCodigo();
-    std::string marca = (this->veh)->getMarca();
-    std::string modelo = (this->veh)->getModelo();
-    std::string conductor = (this->veh)->getConductor();
-    float calif = (this->veh)->getCalifConductor();
-    float precio = this->getPrecio();
-
-    DTConsultaViaje res = DTConsultaViaje(codigo, marca, modelo, conductor, calif, precio);
-    return res;
-}
-
-bool Viaje::relacion(class Pasajero* p) 
-{
-    bool res = false;
-
-    for(const auto& r : reservas)
-    {
-        bool aux = r->relacionResPas(p);
-        res = res || aux;
-
-        if (res) break;
+bool Viaje::relacion(class Pasajero* p) {
+    for(auto const& r : reservas) {
+        if (r->relacionResPas(p)) return true;
     }
-    return res;
+    return false;
 }
 
-int Viaje::totalAsientosRes() 
-{
+int Viaje::totalAsientosRes() {
     int reservados = 0;
-    for (const auto& r : reservas)
-        reservados = reservados + r->getAsientosReservados();
-    
+    for (auto const& r : reservas)
+        reservados += r->getAsientosReservados();
     return reservados;
 }
 
-void Viaje::asociarViajeReserva(Reserva* nr) 
-{
+void Viaje::asociarViajeReserva(Reserva* nr) {
     this->reservas.push_back(nr);
 }
 
-void Viaje::asociarViajeVeh(Vehiculo *veh)
-{
+void Viaje::asociarViajeVeh(Vehiculo *veh) {
     this->veh = veh;
 }
 
-std::vector<DTListarViaje> Viaje::crearDTViajes( const Usuario* u)
-{
+std::vector<DTListarViaje> Viaje::crearDTViajes(const Usuario* u) {
     std::vector<DTListarViaje> res;
-
-    for(const auto& r : reservas)
-    {
-        bool iguales = r->igualUsuario(u);
-
-        if (iguales)
-        {
-            std::cout << "a";
-            DTListarViaje dt = DTListarViaje(this->getCodigo(), this->getFecha(), this->getOrigen(), this->getDestino(), veh->getConductor());
-            std::cout << "b";
-
-            res.push_back(dt);
+    for(auto const& r : reservas) {
+        if (r->igualUsuario(u)) {
+            res.push_back(DTListarViaje(this->codigo, this->fecha, this->origen, this->destino, veh->getConductor()));
         }
     }
     return res;
 }
 
-std::vector<DTUsuarioViaje> Viaje::obtenerPasajeros(std::string nickname) 
-{
+std::vector<DTUsuarioViaje> Viaje::obtenerPasajeros(std::string nickname) {
     std::vector<DTUsuarioViaje> res;
-
-    for (const auto& r : reservas) 
-    {
+    for (auto const& r : reservas) {
         std::string nick = r->obtenerNickPasajero();
         if (nick != nickname)
             res.push_back(DTUsuarioViaje(nick, TipoUsuario::Pasajero));
@@ -127,77 +83,43 @@ std::vector<DTUsuarioViaje> Viaje::obtenerPasajeros(std::string nickname)
     return res;
 }
 
-DTUsuarioViaje Viaje::obtenerConductor()
-{
-    Vehiculo* ve = getVehiculo();
-    return DTUsuarioViaje(ve->getNickConductor(), TipoUsuario::Conductor);
-}
-
-Reserva* Viaje::obtenerReservaCalif(Usuario* u, Usuario* u_calif)
-{
-    Reserva* res = nullptr;
-    DTUsuarioViaje dtu = u->getDTUsuarioViaje();
-    TipoUsuario tipo = dtu.getTipo();
-    std::vector<Reserva*>::iterator r;
-
-    if (tipo == TipoUsuario::Pasajero)
-        while (res != nullptr)
-        {
-            if ((*r)->igualUsuario(u))
-                res = *r;
-            r++;
-        }
-        //for(const auto& r : reservas)
-        //    if (r->igualUsuario(u))
-        //        return r;
-    
-    else    //TipoUsuario:: Conductor
-        while (res != nullptr)
-        {
-            if ((*r)->igualUsuario(u_calif))
-                res = *r;
-            r++;
-        }
-        //for(const auto& r : reservas)
-        //    if (r->igualUsuario(u_calif))
-        //        return r;
-    
-    return res;
-}
-
-bool Viaje::coincideCalif(Usuario* u, Usuario* u_calif)
-{
-    bool res = false;
-
-    for(const auto& r : reservas)
-    {
-        bool aux = r->existeCal(u, u_calif);
-        res = res || aux;
-        if (res) break;
-    }
-    return res;
-}
-
-DTUsuarioViaje Viaje::DTUsuarioViajeCond()
-{
+DTUsuarioViaje Viaje::obtenerConductor() {
     return DTUsuarioViaje(veh->getNickConductor(), TipoUsuario::Conductor);
 }
 
-DTDetalleViaje Viaje::crearDTDetalleViaje()
-{
-    DTDetalleVehiculo dtveh = veh->crearDTDetalleVehiculo();
-    std::vector<DTDetalleReserva> dtreservas;
+Reserva* Viaje::obtenerReservaCalif(Usuario* u, Usuario* u_calif) {
+    DTUsuarioViaje dtu = u->getDTUsuarioViaje();
+    TipoUsuario tipo = dtu.getTipo();
 
-    for (const auto& r : reservas)
-    {
-        DTDetalleReserva dtr = r->crearDTDetalleReserva();
-        dtreservas.push_back(dtr);
+    for (auto* r : this->reservas) {
+        if (tipo == TipoUsuario::Pasajero) {
+            if (r->igualUsuario(u)) return r;
+        } else {
+            if (r->igualUsuario(u_calif)) return r;
+        }
     }
-
-    return DTDetalleViaje(codigo, fecha, origen, destino, asientosPublicados, precio, dtveh, dtreservas);
+    return nullptr;
 }
 
-void Viaje::eliminarLinkVehiculo()
-{
-    veh = NULL;
+bool Viaje::coincideCalif(Usuario* u, Usuario* u_calif) {
+    for(auto const& r : reservas) {
+        if (r->existeCal(u, u_calif)) return true;
+    }
+    return false;
+}
+
+DTUsuarioViaje Viaje::DTUsuarioViajeCond() {
+    return DTUsuarioViaje(veh->getNickConductor(), TipoUsuario::Conductor);
+}
+
+DTDetalleViaje Viaje::crearDTDetalleViaje() {
+    std::vector<DTDetalleReserva> dtreservas;
+    for (auto const& r : reservas) {
+        dtreservas.push_back(r->crearDTDetalleReserva());
+    }
+    return DTDetalleViaje(codigo, fecha, origen, destino, asientosPublicados, precio, veh->crearDTDetalleVehiculo(), dtreservas);
+}
+
+void Viaje::eliminarLinkVehiculo() {
+    veh = nullptr;
 }

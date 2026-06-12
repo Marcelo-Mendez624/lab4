@@ -25,7 +25,7 @@ void CargaDatos::cargarDatos() {
     std::cout << "Cargando datos harcodeados del sistema...\n";
     // TODO hacer pruebas aqui
     // ... (inserción de usuarios, vehículos, viajes, reservas) ...
-    Fabrica *f = f->getInstance();
+    Fabrica *f = Fabrica::getInstance();
 
     IAltaUsuario *altaUsuario = f->getIAltaUsuario();
     std::set<TipoLibreta> libretas;

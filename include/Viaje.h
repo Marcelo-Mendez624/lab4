@@ -27,7 +27,6 @@ public:
     Viaje(Vehiculo* v, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio);
     ~Viaje();
 
-    //Getters
     float getPrecio() const;
     int getAsientosPublicados() const;
     int getCodigo() const;
@@ -38,29 +37,23 @@ public:
     int obtenerCodigo();
     std::vector<Reserva*> getReservas();
 
-    //consultarViajes
     bool cumpleDatos(DTFecha fecha, std::string origen, std::string destino);
     bool consultarAsientos(int asientos);
     DTConsultaViaje crearDTConsultaViaje();
 
-    //generarReserva
     bool relacion(class Pasajero* p);
     int totalAsientosRes();
     void asociarViajeReserva(Reserva* nr);
     void asociarViajeVeh(Vehiculo* veh);
 
-    //listarViajes
     std::vector<DTListarViaje> crearDTViajes(const Usuario* u);
 
-    //listarUsuariosViaje
     std::vector<DTUsuarioViaje> obtenerPasajeros(std::string nickname);
     DTUsuarioViaje obtenerConductor();
 
-    //calificarUsuario
     Reserva* obtenerReservaCalif(Usuario* u, Usuario* u_calif);
     bool coincideCalif(Usuario* u, Usuario* u_calif);
 
-    //EliminarViaje
     DTUsuarioViaje DTUsuarioViajeCond();
     DTDetalleViaje crearDTDetalleViaje();
 

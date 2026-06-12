@@ -1,85 +1,81 @@
 #include "../include/Reserva.h"
 
-
-Reserva::Reserva(int asientosReservados, DTFecha fecha) {
-    this->asientosReservados = asientosReservados;
-    this->fecha = fecha;
-}
+Reserva::Reserva(int asientosReservados, DTFecha fecha) 
+    : asientosReservados(asientosReservados), fecha(fecha), pasajero(nullptr), calificaciones() {}
 
 Reserva::~Reserva() {}
 
-std::list<Calificacion*> Reserva:: getCalificaciones(){
-  return this->calificaciones;
+void Reserva::setAsientosReservados(int a) {
+    this->asientosReservados = a;
 }
 
-int Reserva:: getAsientosReservados(){
-  return this->asientosReservados;
+void Reserva::setFecha(DTFecha f) {
+    this->fecha = f;
 }
 
-DTFecha Reserva:: getfecha(){
-  return this->fecha;
+std::list<Calificacion*> Reserva::getCalificaciones() {
+    return this->calificaciones;
 }
 
-void Reserva:: asociarReservaPasajero(class Pasajero* p){
-  this->pasajero=p;
+int Reserva::getAsientosReservados() {
+    return this->asientosReservados;
 }
 
-std::string Reserva:: obtenerNickPasajero(){
-  class Pasajero* p= this->pasajero;
-  return p->getNickname();
+DTFecha Reserva::getfecha() {
+    return this->fecha;
 }
 
-bool Reserva:: igualUsuario (const Usuario* u){
-    return this->obtenerNickPasajero()==u->getNickname();
+void Reserva::asociarReservaPasajero(Pasajero* p) {
+    this->pasajero = p;
 }
 
-class Pasajero* Reserva:: getPasajero(){
-  return this->pasajero;
+std::string Reserva::obtenerNickPasajero() {
+    return this->pasajero->getNickname();
 }
 
-bool Reserva:: existeCal(Usuario* u, Usuario* u_calif){
-  std::list<Calificacion*> calificaciones=this->calificaciones;
-  std::list<Calificacion*>::iterator it=calificaciones.begin();
-  bool bandera=false;
-  while(it!=calificaciones.end() && !bandera){
-    if ((*it)->coicidenUsuario(u,u_calif))
-       bandera=true;
-    else
-      ++it;
+bool Reserva::igualUsuario(const Usuario* u) {
+    return this->obtenerNickPasajero() == u->getNickname();
+}
+
+Pasajero* Reserva::getPasajero() {
+    return this->pasajero;
+}
+
+bool Reserva::existeCal(Usuario* u, Usuario* u_calif) {
+    for (auto const& c : this->calificaciones) {
+        if (c->coicidenUsuario(u, u_calif))
+            return true;
     }
-    return bandera;
+    return false;
 }
 
-void Reserva:: crearCalificacion(Usuario* u,Usuario* u_calif,int calificacion){
-  ControladorFechaActual* c = ControladorFechaActual::getInstance();
-  DTFecha fecha=c->getFecha();
-  Calificacion* cal=new Calificacion(fecha,calificacion);
-  this->calificaciones.push_back(cal);
-  cal->linkearCalifUsuario(u,u_calif);
-  u_calif->asociarCalificacion(cal);
+void Reserva::crearCalificacion(Usuario* u, Usuario* u_calif, int calificacion) {
+    ControladorFechaActual* c = ControladorFechaActual::getInstance();
+    DTFecha fecha = c->getFecha();
+    Calificacion* cal = new Calificacion(fecha, calificacion);
+    
+    this->calificaciones.push_back(cal);
+    
+    cal->linkearCalifUsuario(u, u_calif);
+    u_calif->asociarCalificacion(cal);
 }
 
-DTDetalleReserva Reserva::crearDTDetalleReserva()
-{
-  return DTDetalleReserva(asientosReservados, fecha, pasajero->getNickname());
+DTDetalleReserva Reserva::crearDTDetalleReserva() {
+    return DTDetalleReserva(asientosReservados, fecha, pasajero->getNickname());
 }
 
-bool Reserva:: relacionResPas(class Pasajero* p){
-  return p->getNickname() == this->pasajero->getNickname();
+bool Reserva::relacionResPas(Pasajero* p) {
+    return p->getNickname() == this->pasajero->getNickname();
 }
 
-void Reserva::eliminarCalificaciones()
-{
-  std::list<Calificacion*> calificaciones = getCalificaciones();
-  for (const auto& c : calificaciones)
-  {
-    c->eliminarLinks();
-    calificaciones.remove(c);
-    delete c;
-  }
+void Reserva::eliminarCalificaciones() {
+    for (auto const& c : this->calificaciones) {
+        c->eliminarLinks();
+        delete c;
+    }
+    this->calificaciones.clear();
 }
 
-void Reserva::eliminarLinkPasajero()
-{
-  pasajero = nullptr;
+void Reserva::eliminarLinkPasajero() {
+    pasajero = nullptr;
 }

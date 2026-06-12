@@ -2,7 +2,6 @@
 #include "../include/ManejadorUsuario.h"
 #include "../include/ManejadorViaje.h"
 
-
 ControladorCalificacion* ControladorCalificacion::instancia = nullptr;
 
 ControladorCalificacion* ControladorCalificacion::getInstance() {
@@ -12,51 +11,38 @@ ControladorCalificacion* ControladorCalificacion::getInstance() {
     return instancia;
 }
 
-ControladorCalificacion::ControladorCalificacion() {
-}
+ControladorCalificacion::ControladorCalificacion() {}
 
-ControladorCalificacion::~ControladorCalificacion() {
-}
+ControladorCalificacion::~ControladorCalificacion() {}
 
 std::map<std::string, DTUsuario> ControladorCalificacion::listarUsuarios() {
     std::map<std::string, DTUsuario> usuarios;
-
-    ManejadorUsuario* m = m->getInstance();
+    ManejadorUsuario* m = ManejadorUsuario::getInstance();
     std::map<std::string, Usuario*> us = m->getUsuarios();
 
-    for (const auto& [str, u] : us)
-    {
+    for (const auto& [str, u] : us) {
         DTUsuario dt = u->getDTUsuario();
         usuarios.insert_or_assign(str, dt);
     }
-
     return usuarios;
 }
 
 std::vector<DTListarViaje> ControladorCalificacion::listarViajes(std::string nickname) {
-    
     this->nickname = nickname;
-    Usuario* mu =  ManejadorUsuario::getInstance()->obtenerUsuario(nickname);
-    std::vector<DTListarViaje> res = mu->getViajes();
-
-    return res;
+    Usuario* mu = ManejadorUsuario::getInstance()->obtenerUsuario(nickname);
+    return mu->getViajes();
 }
 
-
 std::map<std::string, DTUsuarioViaje> ControladorCalificacion::listarUsuariosViaje(int codigo) {
-    
     this->codigoViaje = codigo;
-    
-    ManejadorViaje* mv =  mv->getInstance();
-    Viaje* vi =  mv->obtenerViaje(codigo);
+    Viaje* vi = ManejadorViaje::getInstance()->obtenerViaje(codigo);
 
     std::vector<DTUsuarioViaje> op = vi->obtenerPasajeros(this->nickname);
     DTUsuarioViaje oc = vi->obtenerConductor();
 
     std::map<std::string, DTUsuarioViaje> resultado;
-    //resultado.insert(op.begin(), op.end());
     for (const DTUsuarioViaje& dt : op) {
-    resultado.insert({dt.getNickname(), dt});
+        resultado.insert({dt.getNickname(), dt});
     }
     
     if (oc.getNickname() != nickname)
@@ -66,26 +52,23 @@ std::map<std::string, DTUsuarioViaje> ControladorCalificacion::listarUsuariosVia
 }
 
 bool ControladorCalificacion::calificarUsuario(std::string nicknameCalificado, int calificacion) {
+    ManejadorUsuario* mu = ManejadorUsuario::getInstance();
+    ManejadorViaje* mv = ManejadorViaje::getInstance();
     
-    ManejadorUsuario* mu = mu->getInstance();
-    ManejadorViaje* mv =  mv->getInstance();
-    
-    Usuario* obtenerUsuario = mu->obtenerUsuario(nicknameCalificado);
+    Usuario* u_calif = mu->obtenerUsuario(nicknameCalificado);
     Usuario* u = mu->obtenerUsuario(this->nickname);
-
     Viaje* vi = mv->obtenerViaje(this->codigoViaje);
 
-    bool coincide = vi->coincideCalif(u, obtenerUsuario);
+    if (!u_calif || !u || !vi) return false;
 
-    if(!coincide){
-        Reserva* r = vi->obtenerReservaCalif(u, obtenerUsuario);
-        r->crearCalificacion(u, obtenerUsuario, calificacion);
-
-        //no estoy seguro si se hace asi eliminar el nickname recodado y codigo recordado, pero asi intuyo o seria coherente
-        this->nickname = "";
-        this->codigoViaje = -1; 
-        return true;
-    } else {
-        return false;
+    if (!vi->coincideCalif(u, u_calif)) {
+        Reserva* r = vi->obtenerReservaCalif(u, u_calif);
+        if (r != nullptr) {
+            r->crearCalificacion(u, u_calif, calificacion);
+            this->nickname = "";
+            this->codigoViaje = -1;
+            return true;
+        }
     }
+    return false;
 }

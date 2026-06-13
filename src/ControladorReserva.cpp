@@ -31,8 +31,6 @@ std::list<std::string> ControladorReserva::listarPasajeros() {
     return res;
 }
 
-
-// Checkear
 std::set<DTConsultaViaje> ControladorReserva::consultarViajes(DTFecha fecha,std::string origen,std::string destino,int asientos) 
 {
     ManejadorViaje* mv = ManejadorViaje::getInstance();
@@ -47,15 +45,9 @@ std::set<DTConsultaViaje> ControladorReserva::consultarViajes(DTFecha fecha,std:
         if (check)
         {
             hayLugar = v.second->consultarAsientos(asientos);
-            if (hayLugar)
-            {
-                DTConsultaViaje dt = v.second->crearDTConsultaViaje();
-                dtcv.insert(dt);
-                //dtcv.insert(v.second->crearDTConsultaViaje());
-            }
+            if (hayLugar) dtcv.insert(v.second->crearDTConsultaViaje());
         }
     }
-
     return dtcv;
 }
 

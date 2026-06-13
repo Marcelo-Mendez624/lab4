@@ -13,13 +13,8 @@ Usuario::~Usuario() {}
 
 void Usuario::asociarCalificacion(Calificacion* calificacion) 
 {
-  if (calificaciones.size() == 0){
-    setCalificacionProm(calificacion->getPuntaje());
-  }
-  else{
-    setCalificacionProm((this->getCalificacionProm() + calificacion->getPuntaje()) / calificaciones.size());
-  }
-  calificaciones.push_back(calificacion);
+    setCalificacionProm(((this->getCalificacionProm() * calificaciones.size()) + calificacion->getPuntaje()) / (calificaciones.size() + 1));
+    calificaciones.push_back(calificacion);
 }
 
 DTUsuario Usuario::getDTUsuario() const
@@ -58,6 +53,10 @@ void Usuario::eliminarLinkCalificacion(Calificacion* c)
     while ((*it) != c)
         it++;
     calificaciones.erase(it);
+    if (calificaciones.size() == 0)
+        setCalificacionProm(0);
+    else
+        setCalificacionProm((this->getCalificacionProm() * (calificaciones.size() + 1)) - c->getPuntaje() / calificaciones.size());
 }
 
 void Usuario::setCalificacionProm(float calprom){

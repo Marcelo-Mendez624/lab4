@@ -24,6 +24,7 @@ public:
     std::map<std::string, DTUsuarioViaje> listarUsuariosViaje(int codigo);
     bool calificarUsuario(std::string nicknameCalificado, int calificacion);
 
+    static void cleanUp();
     ~ControladorCalificacion();
 };
 

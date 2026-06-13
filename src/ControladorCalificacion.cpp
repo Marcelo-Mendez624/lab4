@@ -72,3 +72,9 @@ bool ControladorCalificacion::calificarUsuario(std::string nicknameCalificado, i
     }
     return false;
 }
+
+void ControladorCalificacion::cleanUp()
+{
+    if (instancia != nullptr) delete instancia;
+    instancia = nullptr;
+}

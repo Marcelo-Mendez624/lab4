@@ -23,6 +23,7 @@ public:
     IAltaViaje *getIAltaViaje();
     IEliminarViaje *getIEliminarViaje();
     IControladorFechaActual* getIControladorFechaActual();
+    void cleanUp();
 };
 
 #endif

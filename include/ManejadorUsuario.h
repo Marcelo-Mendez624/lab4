@@ -21,6 +21,7 @@ public:
   void nuevoPasajero(std::string nick, std::string nombre, std::string contrasena, std::string email, std::string ci);
   void nuevoConductor(std::string nick, std::string nombre, std::string contrasena, std::string email, std::set<TipoLibreta> libretas);
   Usuario *obtenerUsuario(std::string nick);
+  static void cleanUp();
 };
 #endif
 

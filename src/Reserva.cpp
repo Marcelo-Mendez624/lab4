@@ -68,11 +68,11 @@ bool Reserva::relacionResPas(Pasajero* p) {
 }
 
 void Reserva::eliminarCalificaciones() {
-    for (auto const& c : this->calificaciones) {
+    for (auto const& c : calificaciones) {
         c->eliminarLinks();
         delete c;
     }
-    this->calificaciones.clear();
+    calificaciones.clear();
 }
 
 void Reserva::eliminarLinkPasajero() {

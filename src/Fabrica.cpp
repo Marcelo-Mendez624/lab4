@@ -40,7 +40,14 @@ IEliminarViaje* Fabrica::getIEliminarViaje(){
   return ControladorViaje::getInstance();
 }
 
+void Fabrica::cleanUp()
+{
+  ControladorFechaActual::cleanUp();
+  ControladorViaje::cleanUp();
+  ControladorCalificacion::cleanUp();
+  ControladorReserva::cleanUp();
+  ControladorUsuario::cleanUp();
 
-
-
-
+  delete instancia;
+  instancia = nullptr;
+}

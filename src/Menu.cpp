@@ -562,6 +562,11 @@ void Menu::cargarDatos() {
     CargaDatos::getInstance()->cargarDatos();
 }
 
+void Menu::cleanUp() {
+  Fabrica *f = Fabrica::getInstance();
+  f->cleanUp();
+}
+
 void Menu::mostrarMenu() {
     int opcion = -1;
     while (opcion != 8) {
@@ -601,6 +606,7 @@ void Menu::mostrarMenu() {
                 cargarDatos();
                 break;
             case 8:
+                cleanUp();
                 std::cout << "Saliendo del sistema...\n";
                 break;
             default:

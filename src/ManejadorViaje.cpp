@@ -1,13 +1,19 @@
 #include "../include/ManejadorViaje.h"
 
-ManejadorViaje* ManejadorViaje::instancia = NULL;
+ManejadorViaje* ManejadorViaje::instancia = nullptr;
 int ManejadorViaje::contadorCodigo = 1;
 
 ManejadorViaje::ManejadorViaje() {
 }
 
+ManejadorViaje::~ManejadorViaje()
+{
+    //delete instancia;
+    instancia = nullptr;
+}
+
 ManejadorViaje* ManejadorViaje::getInstance(){
-    if (instancia==NULL){
+    if (instancia==nullptr){
         instancia = new ManejadorViaje();
     }
     return instancia;

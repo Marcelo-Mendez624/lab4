@@ -20,3 +20,9 @@ DTFecha ControladorFechaActual::getFecha() {
 void ControladorFechaActual::setFecha(DTFecha nuevaFecha) {
     fechaActual = nuevaFecha;
 }
+
+void ControladorFechaActual::cleanUp()
+{
+    if (instancia != nullptr) delete instancia;
+    instancia = nullptr;
+}

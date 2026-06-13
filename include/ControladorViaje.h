@@ -23,6 +23,8 @@ public:
     DTDetalleViaje DetalleViaje(int codigo) override;
     void eliminarViaje() override;
     void cancelarEliminarViaje() override;
+    
+    static void cleanUp();
 };
 
 #endif

@@ -78,3 +78,9 @@ bool ControladorReserva::generarReserva (std::string nickname,int codigo,int asi
     
     return false;
 }
+
+void ControladorReserva::cleanUp()
+{
+    if (instance != nullptr) delete instance;
+    instance = nullptr;
+}

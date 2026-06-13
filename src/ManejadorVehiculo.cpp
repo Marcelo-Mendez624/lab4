@@ -38,3 +38,13 @@ Vehiculo* ManejadorVehiculo::nuevoVehiculo(std::string matricula, int capacidad,
     
     return res;
 }
+
+void ManejadorVehiculo::cleanUp()
+{
+    ManejadorVehiculo* it = ManejadorVehiculo::getInstance();
+    for(const auto& v : it->vehiculos)
+        delete v;
+
+    delete it->inst;
+    it->inst = nullptr;
+}

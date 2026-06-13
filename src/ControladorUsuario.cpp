@@ -52,3 +52,12 @@ int ControladorUsuario::registrarVehiculo(std::string nickname, std::string matr
 
   return 0;
 }
+
+void ControladorUsuario::cleanUp()
+{
+  ManejadorUsuario::cleanUp();
+  ManejadorVehiculo::cleanUp();
+
+  if (instancia != nullptr) delete instancia;
+  instancia = nullptr;
+}

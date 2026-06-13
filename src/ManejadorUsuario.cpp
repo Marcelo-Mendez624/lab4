@@ -44,3 +44,13 @@ void ManejadorUsuario::nuevoConductor(std::string nick, std::string nombre, std:
   class Conductor *c = new class Conductor(nick, nombre, contrasena, email, libretas);
   this->agregarUsuario(c);
 };
+
+void ManejadorUsuario::cleanUp()
+{
+  ManejadorUsuario* it = ManejadorUsuario::getInstance();
+  for(const auto& [nick, u] : it->usuarios)
+    delete u;
+
+  delete it->instancia;
+  it->instancia = nullptr;
+}

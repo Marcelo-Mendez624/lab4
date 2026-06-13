@@ -10,6 +10,7 @@ private:
     void eliminarViaje();
     void administrarFechaActual();
     void cargarDatos();
+    void cleanUp();
 
 public:
     void mostrarMenu();

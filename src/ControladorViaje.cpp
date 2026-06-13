@@ -62,17 +62,13 @@ DTDetalleViaje ControladorViaje::DetalleViaje(int codigo)
     ManejadorViaje* mv = mv->getInstance();
     Viaje* vi = mv->obtenerViaje(codigo);
 
-   // Vehiculo* v = vi->getVehiculo();
-    DTDetalleViaje res = vi->crearDTDetalleViaje();
-    
     this->codigo = codigo;
-
-    return res;
+    return vi->crearDTDetalleViaje();
 }
 
 void ControladorViaje::eliminarViaje()
 {
-    ManejadorViaje* mv = mv->getInstance();
+    ManejadorViaje* mv = ManejadorViaje::getInstance();
     Viaje* vi = mv->obtenerViaje(codigo);
     Vehiculo* ve = vi->getVehiculo();
 
@@ -105,4 +101,20 @@ void ControladorViaje::eliminarViaje()
 
 void ControladorViaje::cancelarEliminarViaje()
 {
+}
+
+void ControladorViaje::cleanUp()
+{
+    ControladorViaje* it = ControladorViaje::getInstance();
+    ManejadorViaje* mv = ManejadorViaje::getInstance();
+
+    for(auto const& [id, v] : mv->getViajes())
+    {
+        it->DetalleViaje(id);
+        it->eliminarViaje();
+    }
+    delete mv;
+
+    if (instance != nullptr) delete it->instance;
+    it->instance = nullptr;
 }

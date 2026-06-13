@@ -16,7 +16,7 @@ private:
     std::string nombre;
     std::string contrasena;
     std::string email;
-    float calificacionProm = 5;
+    float calificacionProm = 0;
     std::vector<Calificacion*> calificaciones;
 
 public:

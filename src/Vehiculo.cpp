@@ -49,7 +49,7 @@ std::string Vehiculo::getConductor() const {
 }
 
 float Vehiculo::getCalifConductor() const {
-    return conductor->getCalificacionPromedio();
+    return conductor->getCalificacionProm();
 }
 
 std::string Vehiculo::getNickConductor() {

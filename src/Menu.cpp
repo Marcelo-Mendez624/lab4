@@ -408,7 +408,7 @@ void Menu::calificarUsuario() {
     bool nicknameCalificadoValido = false;
     //TODO: Validar nickname en listado (Hecho!!)
 
-    if(coluv.find(nickname)!=coluv.end())
+    if(coluv.find(nicknameCalificado)!=coluv.end())
       nicknameCalificadoValido = true;
 
     if (!nicknameCalificadoValido) {

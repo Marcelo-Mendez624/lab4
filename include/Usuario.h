@@ -16,6 +16,7 @@ private:
     std::string nombre;
     std::string contrasena;
     std::string email;
+    float calificacionProm = 5;
     std::vector<Calificacion*> calificaciones;
 
 public:
@@ -28,10 +29,9 @@ public:
     std::string getEmail() const { return this->email; }
     std::string getContrasena() const { return this->contrasena; }
     std::vector<Calificacion*> getCalificaciones() const { return this->calificaciones; }
+    float getCalificacionProm() { return this->calificacionProm; }
 
     void asociarCalificacion(Calificacion* calificacion);
-
-    float getCalificacionPromedio() const;
 
     DTUsuario getDTUsuario() const;
 
@@ -40,6 +40,8 @@ public:
     virtual DTUsuarioViaje getDTUsuarioViaje() = 0;  //polimórfica
     
     void eliminarLinkCalificacion(Calificacion* c);
+
+    void setCalificacionProm(float calprom);
 };
 
 #endif

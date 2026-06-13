@@ -85,7 +85,7 @@ Ingrese una opcion: > joaco_r
 > nacho_f
 > santi_90
 > valen_uy
-Ingrese nickname del pasajero: Ingrese fecha del viaje a consultar (dia mes anio): Ingrese origen: Ingrese destino: Ingrese cantidad de asientos a reservar: > Codigo: 14, Marca: Kawasaki, Modelo: Ninja, Conductor: pedro, CalificacionPromedio: -nan, PrecioTotal: 100
+Ingrese nickname del pasajero: Ingrese fecha del viaje a consultar (dia mes anio): Ingrese origen: Ingrese destino: Ingrese cantidad de asientos a reservar: > Codigo: 14, Marca: Kawasaki, Modelo: Ninja, Conductor: pedro, CalificacionPromedio: 5, PrecioTotal: 100
 Ingrese codigo del viaje a reservar: Reserva realizada exitosamente.
 
 === MENU PRINCIPAL ===
@@ -115,7 +115,7 @@ Ingrese su nickname: > Codigo: 3, Fecha: 20/10/2026, Origen: young, Destino: mon
 Ingrese codigo del viaje: > Nickname: joaco_r, Tipo: Pasajero
 > Nickname: nacho_f, Tipo: Pasajero
 > Nickname: valen_uy, Tipo: Pasajero
-Ingrese nickname del usuario a calificar: Ingrese calificacion (1-5): Nickname invalido.
+Ingrese nickname del usuario a calificar: Ingrese calificacion (1-5): Calificacion exitosa.
 
 === MENU PRINCIPAL ===
 1. Alta de Usuario
@@ -176,7 +176,7 @@ Ingrese su nickname: > Codigo: 9, Fecha: 15/3/2026, Origen: montevideo, Destino:
 Ingrese codigo del viaje: > Nickname: mari_b, Tipo: Pasajero
 > Nickname: matil92, Tipo: Conductor
 > Nickname: santi_90, Tipo: Pasajero
-Ingrese nickname del usuario a calificar: Ingrese calificacion (1-5): Nickname invalido.
+Ingrese nickname del usuario a calificar: Ingrese calificacion (1-5): Calificacion exitosa.
 
 === MENU PRINCIPAL ===
 1. Alta de Usuario

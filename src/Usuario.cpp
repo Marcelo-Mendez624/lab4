@@ -13,7 +13,13 @@ Usuario::~Usuario() {}
 
 void Usuario::asociarCalificacion(Calificacion* calificacion) 
 {
-    calificaciones.push_back(calificacion);
+  if (calificaciones.size() == 0){
+    setCalificacionProm(calificacion->getPuntaje());
+  }
+  else{
+    setCalificacionProm((this->getCalificacionProm() + calificacion->getPuntaje()) / calificaciones.size());
+  }
+  calificaciones.push_back(calificacion);
 }
 
 DTUsuario Usuario::getDTUsuario() const
@@ -21,15 +27,6 @@ DTUsuario Usuario::getDTUsuario() const
     return DTUsuario(nickname, nombre);
 }
 
-float Usuario::getCalificacionPromedio() const
-{
-    float calificacionTotal = 0;
-    for (const Calificacion* calificacion : calificaciones) 
-    {
-        calificacionTotal += calificacion->getPuntaje();
-    }
-    return calificacionTotal / calificaciones.size();
-}
 
 std::vector<DTListarViaje> Usuario::getViajes() const {
     std::vector<DTListarViaje> viajes;
@@ -61,4 +58,9 @@ void Usuario::eliminarLinkCalificacion(Calificacion* c)
     while ((*it) != c)
         it++;
     calificaciones.erase(it);
+}
+
+void Usuario::setCalificacionProm(float calprom){
+
+  this->calificacionProm = calprom;
 }

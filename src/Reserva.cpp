@@ -1,4 +1,5 @@
 #include "../include/Reserva.h"
+#include"../include/Fabrica.h"
 
 Reserva::Reserva(int asientosReservados, DTFecha fecha) 
     : asientosReservados(asientosReservados), fecha(fecha), pasajero(nullptr), calificaciones() {}
@@ -50,14 +51,12 @@ bool Reserva::existeCal(Usuario* u, Usuario* u_calif) {
 }
 
 void Reserva::crearCalificacion(Usuario* u, Usuario* u_calif, int calificacion) {
-    ControladorFechaActual* c = ControladorFechaActual::getInstance();
-    DTFecha fecha = c->getFecha();
-    Calificacion* cal = new Calificacion(fecha, calificacion);
-    
-    this->calificaciones.push_back(cal);
-    
-    cal->linkearCalifUsuario(u, u_calif);
-    u_calif->asociarCalificacion(cal);
+  Fabrica *f = Fabrica::getInstance();
+  IControladorFechaActual *c = f->getIControladorFechaActual();
+  Calificacion *cal = new Calificacion(c->getFecha(), calificacion);
+  this->calificaciones.push_back(cal);
+  cal->linkearCalifUsuario(u, u_calif);
+  u_calif->asociarCalificacion(cal);
 }
 
 DTDetalleReserva Reserva::crearDTDetalleReserva() {

@@ -67,7 +67,7 @@ std::vector<DTListarViaje> Viaje::crearDTViajes(const Usuario* u) {
     std::vector<DTListarViaje> res;
     for(auto const& r : reservas) {
         if (r->igualUsuario(u)) {
-            res.push_back(DTListarViaje(this->codigo, this->fecha, this->origen, this->destino, veh->getConductor()));
+            res.push_back(DTListarViaje(this->codigo, this->fecha, this->origen, this->destino, veh->getNickConductor()));
         }
     }
     return res;

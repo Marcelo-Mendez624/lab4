@@ -45,7 +45,7 @@ std::vector<DTListarViaje> Vehiculo::listarViajes() {
 }
 
 std::string Vehiculo::getConductor() const {
-    return conductor->getNickname();
+    return conductor->getNombre();
 }
 
 float Vehiculo::getCalifConductor() const {

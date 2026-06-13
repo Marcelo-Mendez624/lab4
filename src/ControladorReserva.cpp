@@ -2,6 +2,7 @@
 #include "../include/ManejadorUsuario.h"
 #include "../include/Usuario.h"
 #include "../include/ManejadorViaje.h"
+#include"../include/Fabrica.h"
 
 ControladorReserva* ControladorReserva::instance = nullptr;
 
@@ -73,13 +74,14 @@ bool ControladorReserva::generarReserva (std::string nickname,int codigo,int asi
     bool existeRel = v->relacion(pasajero);
 
     if (!existeRel && asientosViajes >= asientos) {
-        Reserva* r = new Reserva(asientos, v->getFecha());
+      Fabrica *f = Fabrica::getInstance();
+      IControladorFechaActual *ctrl = f->getIControladorFechaActual();
+      Reserva *r = new Reserva(asientos, ctrl->getFecha());
+      r->asociarReservaPasajero(pasajero);
+      v->asociarViajeReserva(r);
+      pasajero->asociarPasajeroReserva(r);
 
-        r->asociarReservaPasajero(pasajero);
-        v->asociarViajeReserva(r);
-        pasajero->asociarPasajeroReserva(r);
-
-        return true;
+      return true;
     }
     
     return false;

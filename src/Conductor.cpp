@@ -45,7 +45,7 @@ std::vector<DTVehiculosConductor> Conductor::listarVehiculos() const
     
     for (const auto& vehiculo : vehiculos) 
     {
-        DTVehiculosConductor dtVehiculo(vehiculo->getMatricula(), vehiculo->getMarca(), vehiculo->getCapacidad());
+        DTVehiculosConductor dtVehiculo(vehiculo->getMatricula(), vehiculo->getModelo(), vehiculo->getCapacidad());
         dtVehiculos.push_back(dtVehiculo);
     }
     return dtVehiculos;

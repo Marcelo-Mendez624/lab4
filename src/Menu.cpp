@@ -191,9 +191,9 @@ void Menu::altaViaje() {
 
   // TODO: Recorrer la coleccion y mostrar "> Matricula: xx, Capacidad: yy, Marca: zzz, Modelo: www, Tipo: ttt" Nota de Joaco: Marca y tipo no están en el DTVehiculosConductor
   for (std::vector<DTVehiculosConductor>::iterator it =col.begin(); it != col.end();++it)
-     std::cout << "Matricula: " << it->getMatricula()
-              << ", Capacidad: " << it->getCapacidad()
+     std::cout << "> Matricula: " << it->getMatricula()
               << ", Modelo: " << it->getModelo()
+              << ", Capacidad: " << it->getCapacidad()
               << "\n";
 
   std::cout << "Ingrese matricula del vehiculo a utilizar: ";
@@ -284,7 +284,7 @@ void Menu::generarReserva() {
 
     for (std::set<DTConsultaViaje>::iterator it = col.begin(); it != col.end();++it)
     {
-      std::cout << "< Codigo: " << it->getCodigo() << ", Marca: " << it->getMarca() << ", Modelo: " << it->getModelo() << ", Conductor: " << it->getConductor() << ", CalificacionPromedio: " << it->getCalificacionProm() << ", PrecioTotal: " << it->getPrecioTotal() << "\n";
+      std::cout << "> Codigo: " << it->getCodigo() << ", Marca: " << it->getMarca() << ", Modelo: " << it->getModelo() << ", Conductor: " << it->getConductor() << ", CalificacionPromedio: " << it->getCalificacionProm() << ", PrecioTotal: " << it->getPrecioTotal() << "\n";
     }
 
     bool hayViajes = !col.empty(); // TODO: Validar coleccion vacía (Hecho!!)
@@ -337,7 +337,7 @@ void Menu::calificarUsuario() {
 
   for(std::map<std::string,DTUsuario>
     ::iterator it = colDtU.begin();it!=colDtU.end();++it)
-    std::cout << "< Nickname: " << (it->second).getNickname() << ", Nombre: " << (it->second).getNombre() << "\n";
+    std::cout << "> Nickname: " << (it->second).getNickname() << ", Nombre: " << (it->second).getNombre() << "\n";
 
   std::string nickname;
   std::cout << "Ingrese su nickname: ";
@@ -497,11 +497,13 @@ std::cout << ">> Vehiculo <<" << "\n";
 std::cout << "--- Matricula: " << dtDV.getVehiculo().getMatricula()
           << ", Capacidad: " << dtDV.getVehiculo().getCapacidad()
           << ", Marca: " << dtDV.getVehiculo().getMarca()
-          << ", Modelo: " << dtDV.getVehiculo().getModelo()
-          << ", Tipo: " << dtDV.getVehiculo().getTipo()
-          << "\n";
+          << ", Modelo: " << dtDV.getVehiculo().getModelo();
+      if (dtDV.getVehiculo().getTipo()==0)
+        std::cout << ", Tipo: Auto\n";
+      else
+        std::cout << ", Tipo: Moto\n";
 
-          //imprimo info de las reservas
+// imprimo info de las reservas
 std::cout << ">> Reservas <<" << "\n";
 std::vector<DTDetalleReserva> res = dtDV.getReservas();
 for (std::vector<DTDetalleReserva>::iterator it = res.begin(); it != res.end();++it){

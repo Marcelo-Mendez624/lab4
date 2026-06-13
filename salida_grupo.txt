@@ -9,15 +9,6 @@
 7. Cargar Datos
 8. Salir
 Ingrese una opcion: Cargando datos harcodeados del sistema...
-###REGISTRAR VEHICULO SUCCESS###
-###REGISTRAR VEHICULO SUCCESS###
-###REGISTRAR VEHICULO SUCCESS###
-###ALTA VIAJE SUCCESS###
-###ALTA VIAJE SUCCESS###
-###ALTA VIAJE SUCCESS###
-###GENERAR RESERVA SUCCESS###
-###GENERAR RESERVA SUCCESS###
-###GENERAR RESERVA SUCCESS###
 Datos cargados exitosamente.
 
 === MENU PRINCIPAL ===
@@ -76,7 +67,7 @@ Ingrese matricula: Ingrese capacidad: Ingrese marca: Ingrese modelo: Ingrese tip
 6. Administrar Fecha Actual
 7. Cargar Datos
 8. Salir
-Ingrese una opcion: Ingrese nickname del conductor: Matricula: qtr1515, Capacidad: 1, Modelo: Kawasaki
+Ingrese una opcion: Ingrese nickname del conductor: > Matricula: qtr1515, Modelo: Ninja, Capacidad: 1
 Ingrese matricula del vehiculo a utilizar: Ingrese fecha del viaje (dia mes anio): Ingrese origen: Ingrese destino: Ingrese cantidad de asientos: Ingrese precio por asiento: Viaje registrado exitosamente.
 
 === MENU PRINCIPAL ===
@@ -94,7 +85,7 @@ Ingrese una opcion: > joaco_r
 > nacho_f
 > santi_90
 > valen_uy
-Ingrese nickname del pasajero: Ingrese fecha del viaje a consultar (dia mes anio): Ingrese origen: Ingrese destino: Ingrese cantidad de asientos a reservar: < Codigo: 14, Marca: Kawasaki, Modelo: Ninja, Conductor: pedro_c, CalificacionPromedio: -nan, PrecioTotal: 100
+Ingrese nickname del pasajero: Ingrese fecha del viaje a consultar (dia mes anio): Ingrese origen: Ingrese destino: Ingrese cantidad de asientos a reservar: > Codigo: 14, Marca: Kawasaki, Modelo: Ninja, Conductor: pedro, CalificacionPromedio: -nan, PrecioTotal: 100
 Ingrese codigo del viaje a reservar: Reserva realizada exitosamente.
 
 === MENU PRINCIPAL ===
@@ -106,18 +97,18 @@ Ingrese codigo del viaje a reservar: Reserva realizada exitosamente.
 6. Administrar Fecha Actual
 7. Cargar Datos
 8. Salir
-Ingrese una opcion: < Nickname: ana_silva, Nombre: Ana Silva
-< Nickname: carlos_r, Nombre: Carlos Rossi
-< Nickname: greg_m, Nombre: Diego Rodriguez
-< Nickname: joaco_r, Nombre: Joaquin Rivero
-< Nickname: juan_p, Nombre: juan
-< Nickname: lau_vaz, Nombre: Laura Vazquez
-< Nickname: mari_b, Nombre: Maria Noel Barreto
-< Nickname: matil92, Nombre: Matias Lopez
-< Nickname: nacho_f, Nombre: Ignacio Figueroa
-< Nickname: pedro_c, Nombre: pedro
-< Nickname: santi_90, Nombre: Santiago Acosta
-< Nickname: valen_uy, Nombre: Valentina Mendez
+Ingrese una opcion: > Nickname: ana_silva, Nombre: Ana Silva
+> Nickname: carlos_r, Nombre: Carlos Rossi
+> Nickname: greg_m, Nombre: Diego Rodriguez
+> Nickname: joaco_r, Nombre: Joaquin Rivero
+> Nickname: juan_p, Nombre: juan
+> Nickname: lau_vaz, Nombre: Laura Vazquez
+> Nickname: mari_b, Nombre: Maria Noel Barreto
+> Nickname: matil92, Nombre: Matias Lopez
+> Nickname: nacho_f, Nombre: Ignacio Figueroa
+> Nickname: pedro_c, Nombre: pedro
+> Nickname: santi_90, Nombre: Santiago Acosta
+> Nickname: valen_uy, Nombre: Valentina Mendez
 Ingrese su nickname: > Codigo: 3, Fecha: 20/10/2026, Origen: young, Destino: montevideo, Conductor: ana_silva
 > Codigo: 4, Fecha: 21/10/2026, Origen: montevideo, Destino: mercedes, Conductor: ana_silva
 > Codigo: 10, Fecha: 15/3/2026, Origen: montevideo, Destino: colonia, Conductor: ana_silva
@@ -152,11 +143,11 @@ Ingrese una opcion: > Codigo: 1, Fecha: 21/10/2026, Origen: montevideo, Destino:
 Ingrese codigo del viaje a eliminar: >> Viaje <<
 --- Codigo: 10, Fecha: 15/3/2026, Origen: montevideo, Destino: colonia, AsientosPublicados: 9, Precio por asiento: 180
 >> Vehiculo <<
---- Matricula: BCS4105, Capacidad: 9, Marca: Hyundai, Modelo: H1, Tipo: 0
+--- Matricula: BCS4105, Capacidad: 9, Marca: Hyundai, Modelo: H1, Tipo: Auto
 >> Reservas <<
---- AsientosReservados: 5, Fecha: 15/3/2026, Pasajero: nacho_f
---- AsientosReservados: 3, Fecha: 15/3/2026, Pasajero: valen_uy
---- AsientosReservados: 1, Fecha: 15/3/2026, Pasajero: joaco_r
+--- AsientosReservados: 5, Fecha: 14/3/2026, Pasajero: nacho_f
+--- AsientosReservados: 3, Fecha: 14/3/2026, Pasajero: valen_uy
+--- AsientosReservados: 1, Fecha: 14/3/2026, Pasajero: joaco_r
 ¿Confirmar eliminacion? (1: Si, 0: No): Viaje eliminado exitosamente.
 
 === MENU PRINCIPAL ===
@@ -168,18 +159,18 @@ Ingrese codigo del viaje a eliminar: >> Viaje <<
 6. Administrar Fecha Actual
 7. Cargar Datos
 8. Salir
-Ingrese una opcion: < Nickname: ana_silva, Nombre: Ana Silva
-< Nickname: carlos_r, Nombre: Carlos Rossi
-< Nickname: greg_m, Nombre: Diego Rodriguez
-< Nickname: joaco_r, Nombre: Joaquin Rivero
-< Nickname: juan_p, Nombre: juan
-< Nickname: lau_vaz, Nombre: Laura Vazquez
-< Nickname: mari_b, Nombre: Maria Noel Barreto
-< Nickname: matil92, Nombre: Matias Lopez
-< Nickname: nacho_f, Nombre: Ignacio Figueroa
-< Nickname: pedro_c, Nombre: pedro
-< Nickname: santi_90, Nombre: Santiago Acosta
-< Nickname: valen_uy, Nombre: Valentina Mendez
+Ingrese una opcion: > Nickname: ana_silva, Nombre: Ana Silva
+> Nickname: carlos_r, Nombre: Carlos Rossi
+> Nickname: greg_m, Nombre: Diego Rodriguez
+> Nickname: joaco_r, Nombre: Joaquin Rivero
+> Nickname: juan_p, Nombre: juan
+> Nickname: lau_vaz, Nombre: Laura Vazquez
+> Nickname: mari_b, Nombre: Maria Noel Barreto
+> Nickname: matil92, Nombre: Matias Lopez
+> Nickname: nacho_f, Nombre: Ignacio Figueroa
+> Nickname: pedro_c, Nombre: pedro
+> Nickname: santi_90, Nombre: Santiago Acosta
+> Nickname: valen_uy, Nombre: Valentina Mendez
 Ingrese su nickname: > Codigo: 9, Fecha: 15/3/2026, Origen: montevideo, Destino: colonia, Conductor: matil92
 > Codigo: 12, Fecha: 14/3/2026, Origen: montevideo, Destino: colonia, Conductor: carlos_r
 Ingrese codigo del viaje: > Nickname: mari_b, Tipo: Pasajero

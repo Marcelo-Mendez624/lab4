@@ -60,9 +60,7 @@ void CargaDatos::cargarDatos() {
     altaUsuario->registrarVehiculo("carlos_r", "SBJ4874", 4, "Volkswagen", "Gol", TipoVehiculo::Auto);
     altaUsuario->registrarVehiculo("carlos_r", "SCF2469", 1, "Yamaha", "FZ S", TipoVehiculo::Moto);
 
-    std::cout << "###REGISTRAR VEHICULO SUCCESS###\n";
-    std::cout << "###REGISTRAR VEHICULO SUCCESS###\n";
-    std::cout << "###REGISTRAR VEHICULO SUCCESS###\n";
+
 
     IAltaViaje *altaViaje = f->getIAltaViaje();
     
@@ -80,9 +78,7 @@ void CargaDatos::cargarDatos() {
     altaViaje->altaViaje("SBJ4874", DTFecha(14, 3, 2026), "montevideo", "colonia", 4, 600);
     altaViaje->altaViaje("LDA4875", DTFecha(20, 10, 2026), "young", "montevideo", 1, 250);
 
-    std::cout << "###ALTA VIAJE SUCCESS###\n";
-    std::cout << "###ALTA VIAJE SUCCESS###\n";
-    std::cout << "###ALTA VIAJE SUCCESS###\n";
+ 
 
     IGenerarReserva* gr = f->getIGenerarReserva();
     IControladorFechaActual* fa = f->getIControladorFechaActual();
@@ -105,9 +101,6 @@ void CargaDatos::cargarDatos() {
     fa->setFecha(f3);
     gr->generarReserva("mari_b", 1, 2);
 
-    std::cout << "###GENERAR RESERVA SUCCESS###\n";
-    std::cout << "###GENERAR RESERVA SUCCESS###\n";
-    std::cout << "###GENERAR RESERVA SUCCESS###\n";
 
     ICalificarUsuario* calificarUsuario = f->getICalificarUsuario();
 

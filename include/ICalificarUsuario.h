@@ -12,6 +12,7 @@
 class ICalificarUsuario
 {
 public:
+  virtual ~ICalificarUsuario(){};
   virtual std::map<std::string, DTUsuario> listarUsuarios() = 0;
   virtual std::vector<DTListarViaje> listarViajes(std::string nickname) = 0;
   virtual std::map<std::string, DTUsuarioViaje> listarUsuariosViaje(int codigoViaje) = 0;

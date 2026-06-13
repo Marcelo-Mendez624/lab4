@@ -135,3 +135,10 @@ void CargaDatos::cargarDatos() {
     datosCargados = true;
     std::cout << "Datos cargados exitosamente.\n";
 }
+
+void:: CargaDatos:: cleanUp(){
+  if (instancia!=nullptr){
+    delete instancia;
+    instancia = nullptr;
+  }
+}

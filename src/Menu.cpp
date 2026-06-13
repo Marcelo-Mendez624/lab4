@@ -565,6 +565,8 @@ void Menu::cargarDatos() {
 void Menu::cleanUp() {
   Fabrica *f = Fabrica::getInstance();
   f->cleanUp();
+  CargaDatos *c = CargaDatos::getInstance();
+  c->cleanUp();
 }
 
 void Menu::mostrarMenu() {

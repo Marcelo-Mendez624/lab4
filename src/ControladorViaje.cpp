@@ -88,7 +88,7 @@ void ControladorViaje::eliminarViaje()
 
         //Eliminar reserva <-> pasajero
         r->eliminarLinkPasajero();
-        p->eliminarLinkReserva(r); //TODO para marce (jodete por hacer bidireccionalidad)
+        p->eliminarLinkReserva(r);
         reservas.pop_back();
 
         //Eliminar instancia de reserva

@@ -8,7 +8,6 @@ ManejadorViaje::ManejadorViaje() {
 
 ManejadorViaje::~ManejadorViaje()
 {
-    //delete instancia;
     instancia = nullptr;
 }
 
